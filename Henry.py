@@ -7,7 +7,7 @@ async def on_ready():
     while (not bot.is_closed):
         msg = shitpost()
         HENRYSSERVER = bot.get_server(os.getenv('HENRYSSERVER'))
-        await bot.send_message(HENRYSSERVER.get_channel(os.getenv('HENRYSSERVER_GENERAL')), msg)
+        await bot.send_message(HENRYSSERVER.get_channel(os.getenv('HENRYSSERVER_ROBOT_NIGGAS')), msg)
         print("Meme Sent")
         print("Waiting "+str(seconds)+" seconds...")
         for _ in range(0,seconds):
