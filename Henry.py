@@ -7,7 +7,7 @@ async def on_ready():
     while (not bot.is_closed):
         msg = shitpost()
         HENRYSSERVER = bot.get_server(os.getenv('HENRYSSERVER'))
-        await bot.send_message(HENRYSSERVER.get_channel(os.getenv('HENRYSSERVER_ROBOT_NIGGAS')), msg)
+        await bot.send_message(HENRYSSERVER.get_channel(os.getenv('HENRYSSERVER_GENERAL')), msg)
         print("Meme Sent")
         print("Waiting "+str(seconds)+" seconds...")
         for _ in range(0,seconds):
@@ -50,7 +50,7 @@ async def on_message(message): #Handles responding to messages
                 await asyncio.sleep(30) #Wait 30 seconds and then reset counter, bot can respond to bots again
                 counter = 0
         elif (chance > 98 or "henry" in message.content or "HENRY" in message.content or "Henry" in message.content or '<@472243513837355009>' in message.content):
-            if (chance < 75):
+            if (chance < 60):
                 msg = retaliate(1) +" {0.author.mention}".format(message)
             else:
                 msg = retaliate(2).format(message)
