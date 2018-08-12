@@ -50,7 +50,6 @@ statementIntros = [
     "I doubt these niggas will appreciate it when I ", 
     "My creator told me that I’m not allowed to ",
     "I don’t think ya’ll understand the fact that I could ",
-    "I don’t think ya’ll understand the fact that I really want to ",
     "I literally can’t even ",
     "Hot damn it's time to ",
     "I really think that is time for me to ",
