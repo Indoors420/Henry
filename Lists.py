@@ -7,6 +7,16 @@ rejected = [
     "maybe later",
     "don't feel like it",
     "ask someone else",
+    "Never interupt me eating beans and watching Cars 2 ever a-fucking-gain",
+    "nah man I don't really feels like it right now lmfao",
+    "I mean I could if I wanted to, but why the fuck would I LMAO",
+    "don't ever ask me that ever again",
+    "sorry I don't speak gay retard",
+    "I'll bet you'd really like me to do that, now wouldn't you?",
+    "The fact that you think that I'd do that for you is really fucking dumb lol",
+    "shut up nerd",
+    "fuck you idiot, always askin me to do shit, do it yourself you worthless fucking idiot",
+    "Ok retard, I can't just do everything around here.",
 ]
 commandError = [ #If someone calls a command that doesn't exist
     "Are you sure you typed that correctly retard?",
@@ -21,6 +31,12 @@ noRights = [ #If someone doesn't have server permission to use a command
     "You are not authorized retard",
     "I would, but I won't",
     "Bitch, shutcho ass up"
+    "Hey chief, I'm not capable of doing that for you",
+    "Nah nigga you gay HAHA",
+    "Nah nigga you ain't cool enough for that shit",
+    "You the type of nigga to call other niggas king, get the fuck outta here lmfao",
+    "Maybe if the people on this server liked you enough, you'd be able to do that",
+    "If you ever ask that again I will have sex with your dad",
 ]
 badArg = [ #If a command doesn't get the required or correct argument
     "Do not waste my time",
@@ -31,6 +47,11 @@ clear1k = [ #Henry won't clear more than 999 messages at a time
     "Do you really fucking expect me to clear that many messages right now?",
     "Yeah you can piss right off, I'm not clearing that many messages.",
     "I am not emotionally capable of clearing any more than 999 messages at a time.",
+    "I am way too lazy to even think of doing that.",
+    "If you were smart you'd just ask me to clear 999 multiple times, but no.",
+    "If you think I can do that then you are just another shit idiot.",
+    "Why don't you clear all those messages yourself you fucking nerd.",
+    "No. I refuse.",
 ]
 botOutrank = [ #If Henry isn't a high enough rank
     "I'm not physically capable of doing that.",
@@ -50,6 +71,7 @@ statementIntros = [
     "I doubt these niggas will appreciate it when I ", 
     "My creator told me that I’m not allowed to ",
     "I don’t think ya’ll understand the fact that I could ",
+    "I don’t think ya’ll understand the fact that I really want to ",
     "I literally can’t even ",
     "Hot damn it's time to ",
     "I really think that is time for me to ",
