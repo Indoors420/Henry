@@ -7,23 +7,17 @@ async def on_ready():
     seconds = 3601
     while (not bot.is_closed):
         if (Awake):
-            GOAT = bot.get_server(os.getenv('GOAT'))
-            SUBPARMETA = bot.get_server(os.getenv('SUBPARMETA'))
-            HENRYSSERVER = bot.get_server(os.getenv('HENRYSSERVER'))
+            HENRYSSERVER = bot.get_server(os.getenv('HENRYS_TESTING_SERVER'))
+            await asyncio.sleep(1)
+            await bot.send_typing(HENRYSSERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')))
             msg = shitpost()
-            await bot.send_typing(GOAT.get_channel(os.getenv('GOAT_GENERAL')))
-            await bot.send_typing(SUBPARMETA.get_channel(os.getenv('SUBPARMETA_HENRYS_CHANNEL')))
-            await bot.send_typing(HENRYSSERVER.get_channel(os.getenv('HENRYSSERVER_INTEGRATION')))
-            await asyncio.sleep(0.8)
-            await bot.send_message(GOAT.get_channel(os.getenv('GOAT_GENERAL')), msg)
-            await bot.send_message(SUBPARMETA.get_channel(os.getenv('SUBPARMETA_HENRYS_CHANNEL')), msg)
-            await bot.send_message(HENRYSSERVER.get_channel(os.getenv('HENRYSSERVER_INTEGRATION')), msg)
+            await bot.send_message(HENRYSSERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')), msg)
             print("Meme Sent")
             print("Waiting "+str(seconds)+" seconds...")
+            for _ in range(0,seconds):
+                await asyncio.sleep(1)
         else:
-            print("Would say some shit but I'm schleep")
-        for _ in range(0,seconds):
-            await asyncio.sleep(1)
+            print("Would say some shit but I'm schleep.")
 @bot.event
 async def on_command_error(error: Exception, ctx: commands.Context):
     ignored = (commands.CommandNotFound, commands.UserInputError)
