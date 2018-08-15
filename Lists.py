@@ -50,7 +50,7 @@ clear1k = [ #Henry won't clear more than 999 messages at a time
     "I am way too lazy to even think of doing that.",
     "If you were smart you'd just ask me to clear 999 multiple times, but no.",
     "If you think I can do that then you are just another shit idiot.",
-    "Why don't you clear all those messages yourself you fucking nerd.",
+    "Why don't you clear all those messages yourself you fucking nerd?",
     "No. I refuse.",
 ]
 botOutrank = [ #If Henry isn't a high enough rank
@@ -309,10 +309,10 @@ phrases = [
     "Cool and Good.",
     "Why do girls throw their pee away?",
     "And I freaked it.",
-    "Big body whats yo build boy.", 
+    "Big body whats yo build boy", 
     "Uzi not again.", 
     "My chain, my pants, my pants with the chain.", 
-    "Who them YBN Niggas why they always stuntin.",
+    "Who them YBN Niggas why they always stuntin?",
     "Bounce out with that fo fo.", 
     "Have you called your mother yet today and told her you loved her?",
     "School is very hard.", 
@@ -341,14 +341,3 @@ phrases = [
     "My girl mad at me cuz I been straight keeping the cubes bruh lmao.", 
     "WNBA be like: 'Wow a new record for loads of laundry done and sandwiches made in a single game!'",
 ]
-#"Recent" lists are used to store generated words/phrases and then to regenerate new gens so as not to be repetitive
-Nrecent1 = []
-Nrecent2 = []
-Nrecent3 = []
-Vrecent1 = []
-Vrecent2 = []
-Vrecent3 = []
-Irecent1 = []
-Irecent2 = []
-Irecent3 = []
-Precent = []
