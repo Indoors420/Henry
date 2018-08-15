@@ -5,8 +5,9 @@ bot = commands.Bot(command_prefix="Henry, ")
 async def on_ready():
     seconds = 3601
     while (not bot.is_closed):
-        msg = shitpost()
         HENRYSSERVER = bot.get_server(os.getenv('HENRYS_TESTING_SERVER'))
+        await bot.send_typing(HENRYSSERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')))
+        msg = shitpost()
         await bot.send_message(HENRYSSERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')), msg)
         print("Meme Sent")
         print("Waiting "+str(seconds)+" seconds...")
@@ -201,7 +202,6 @@ def phraseGen(): #Returns a random phrase that Henry's creators made him able to
     while (i in RecentGen.phrases):
         i = random.randint(0,len(Lists.phrases)-1)
     RecentGen.phrases.append(i)
-    print("Recent Phrase Length: "+str(len(RecentGen.phrases)))
     phrase = Lists.phrases[i]
     return(phrase)
 bot.run(os.getenv('TOKEN'))
