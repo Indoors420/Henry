@@ -6,6 +6,7 @@ async def on_ready():
     seconds = 3601
     while (not bot.is_closed):
         HENRYSSERVER = bot.get_server(os.getenv('HENRYS_TESTING_SERVER'))
+        await asyncio.sleep(1)
         await bot.send_typing(HENRYSSERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')))
         msg = shitpost()
         await bot.send_message(HENRYSSERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')), msg)
@@ -18,6 +19,7 @@ async def on_command_error(error: Exception, ctx: commands.Context):
     ignored = (commands.CommandNotFound, commands.UserInputError)
     error = getattr(error, 'original', error)
     if isinstance(error, ignored):
+        await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.7)
         msg = Lists.commandError[random.randint(0,len(Lists.commandError)-1)]
         await bot.send_message(ctx.message.channel, msg)
@@ -29,6 +31,7 @@ counter = 0
 async def on_message(message): #Handles responding to messages
     global counter
     if ("Henry, help" in message.content):
+        await bot.send_typing(message.channel)
         await asyncio.sleep(0.7)
         msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
         await bot.send_message(message.channel, msg)
@@ -45,6 +48,7 @@ async def on_message(message): #Handles responding to messages
                     msg = retaliate(1) +" {0.author.mention}".format(message)
                 else:
                     msg = retaliate(2).format(message)
+                await bot.send_typing(message.channel)
                 await asyncio.sleep(2) #wait 2 seconds before responding to a bot to prevent rapid fire responses between bots
                 await bot.send_message(message.channel, msg)   
             else:
@@ -55,29 +59,34 @@ async def on_message(message): #Handles responding to messages
                 msg = retaliate(1) +" {0.author.mention}".format(message)
             else:
                 msg = retaliate(2).format(message)
+            await bot.send_typing(message.channel)
             await asyncio.sleep(0.7)
             await bot.send_message(message.channel, msg)   
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
         msg = Lists.noRights[random.randint(0, len(Lists.noRights)-1)]
+        await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.7)
         await bot.send_message(ctx.message.channel, msg)
         return
     elif (ctx.message.channel.server.me.server_permissions.manage_messages == False):
         msg = Lists.botOutrank[random.randint(0, len(Lists.botOutrank)-1)]
+        await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.7)
         await bot.send_message(ctx.message.channel, msg)
         return
     else:
         if (not input.isdigit()):
             msg = Lists.badArg[random.randint(0, len(Lists.badArg)-1)]
+            await bot.send_typing(ctx.message.channel)
             await asyncio.sleep(0.7)
             await bot.send_message(ctx.message.channel, msg)
             return          
         input = int(input)
         if (input < 2):
             msg = Lists.badArg[random.randint(0, len(Lists.badArg)-1)]
+            await bot.send_typing(ctx.message.channel)
             await asyncio.sleep(0.7)
             await bot.send_message(ctx.message.channel, msg)
             return
@@ -111,19 +120,24 @@ async def clear(ctx, input):
                 return
         elif(input >= 1000):
             msg = Lists.clear1k[random.randint(0, len(Lists.clear1k)-1)]
+            await bot.send_typing(ctx.message.channel)
+            await asyncio.sleep(0.7)
             await bot.send_message(ctx.message.channel, msg)
 @bot.command(pass_context = True)
 async def kick(ctx, user: discord.Member):
     if (ctx.message.author.server_permissions.kick_members == False or user.id == "187656701380526080"):
         msg = Lists.noRights[random.randint(0, len(Lists.noRights)-1)]
+        await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.7)
         await bot.send_message(ctx.message.channel, msg)
     elif(ctx.message.server.me.top_role <= user.top_role):
         msg = Lists.botOutrank[random.randint(0, len(Lists.botOutrank)-1)]
+        await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.7)
         await bot.send_message(ctx.message.channel, msg)
     elif(ctx.message.author.top_role <= user.top_role):
         msg = Lists.authorOutrank[random.randint(0, len(Lists.authorOutrank)-1)]
+        await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.7)
         await bot.send_message(ctx.message.channel, msg)
     else:
