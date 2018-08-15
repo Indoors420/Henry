@@ -187,19 +187,28 @@ def introGen(a): #Returns a sentence starter for use in random phrase generation
     if (a == 1):
         i = random.randint(0, len(Lists.statementIntros)-1)
         while (i in RecentGen.intros1):
-            i += 1
+            if (i < len(Lists.statementIntros)-1)
+                i += 1
+            else:
+                i = 0
         RecentGen.intros1.append(i)
         intro = Lists.statementIntros[i]
     elif (a == 2):
         i = random.randint(0, len(Lists.questionIntros)-1)
         while (i in RecentGen.intros2):
-            i += 1
+            if (i < len(Lists.questionIntros)-1)
+                i += 1
+            else:
+                i = 0
         RecentGen.intros2.append(i)
         intro = Lists.questionIntros[i]
     elif (a == 3):
         i = random.randint(0, len(Lists.retaliationIntros)-1)
         while (i in RecentGen.intros3):
-            i += 1
+            if (i < len(Lists.retaliationIntros)-1)
+                i += 1
+            else:
+                i = 0
         RecentGen.intros3.append(i)
         intro = Lists.retaliationIntros[i]
     return(intro)
@@ -213,19 +222,28 @@ def verbGen(a): #Returns a verb for use in random phrase generation
     if (a == 1):
         i = random.randint(0,len(Lists.verbs1)-1)
         while (i in RecentGen.verbs1):
-            i += 1
+            if (i < len(Lists.verbs1)-1)
+                i += 1
+            else:
+                i = 0
         RecentGen.verbs1.append(i)
         verb = Lists.verbs1[i]
     elif (a == 2):
         i = random.randint(0,len(Lists.verbs2)-1)
         while (i in RecentGen.verbs2):
-            i += 1
+            if (i < len(Lists.verbs2)-1)
+                i += 1
+            else:
+                i = 0
         RecentGen.verbs2.append(i)
         verb = Lists.verbs2[i]
     elif (a == 3):
         i = random.randint(0,len(Lists.verbs3)-1)
         while (i in RecentGen.verbs3):
-            i += 1
+            if (i < len(Lists.verbs3)-1)
+                i += 1
+            else:
+                i = 0
         RecentGen.verbs3.append(i)
         verb = Lists.verbs3[i]
     return(verb)
@@ -239,19 +257,28 @@ def nounGen(a): #Returns a noun/object for use in random phrase generation
     if (a == 1):
         i = random.randint(0,len(Lists.nouns1)-1)
         while (i in RecentGen.nouns1):
-            i += 1
+            if (i < len(Lists.nouns1)-1)
+                i += 1
+            else:
+                i = 0
         RecentGen.nouns1.append(i)
         noun = Lists.nouns1[i]
     elif (a == 2):
         i = random.randint(0,len(Lists.nouns2)-1)
         while (i in RecentGen.nouns2):
-            i += 1
+            if (i < len(Lists.nouns2)-1)
+                i += 1
+            else:
+                i = 0
         RecentGen.nouns2.append(i)
         noun = Lists.nouns2[i]
     elif (a == 3):
         i = random.randint(0,len(Lists.retaliationNouns)-1)
         while (i in RecentGen.nouns3):
-            i += 1
+            if (i < len(Lists.retaliationNouns)-1)
+                i += 1
+            else:
+                i = 0
         RecentGen.nouns3.append(i)
         noun = Lists.retaliationNouns[i]
     return(noun)
@@ -266,7 +293,10 @@ def phraseGen(): #Returns a random phrase that Henry's creators made him able to
         del RecentGen.phrases[0]
     i = random.randint(0,len(Lists.phrases)-1)
     while (i in RecentGen.phrases):
-        i += 1
+            if (i < len(Lists.phrases)-1)
+                i += 1
+            else:
+                i = 0
     RecentGen.phrases.append(i)
     phrase = Lists.phrases[i]
     return(phrase)
