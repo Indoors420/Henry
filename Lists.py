@@ -1,4 +1,4 @@
-blackList = [ #People not allowed to use Henry's commands
+blackList = [
     "150420859683733504", # @Lunar
 ]
 whitelist = [
