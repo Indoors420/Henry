@@ -5,6 +5,7 @@ Awake = True
 @bot.event
 async def on_ready():
     seconds = 3601
+    print(Lists.whitelist)
     while (not bot.is_closed):
         if (Awake):
             HENRYSSERVER = bot.get_server(os.getenv('HENRYS_TESTING_SERVER'))
