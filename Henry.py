@@ -30,7 +30,7 @@ async def on_command_error(error: Exception, ctx: commands.Context):
     error = getattr(error, 'original', error)
     if isinstance(error, ignored):
         await bot.send_typing(ctx.message.channel)
-        await asyncio.sleep(0.7)
+        await asyncio.sleep(1)
         msg = Lists.commandError[random.randint(0,len(Lists.commandError)-1)]
         await bot.send_message(ctx.message.channel, msg)
         return
@@ -42,7 +42,7 @@ async def on_message(message): #Handles responding to messages
     global counter
     if ("Henry, help" in message.content):
         await bot.send_typing(message.channel)
-        await asyncio.sleep(0.7)
+        await asyncio.sleep(1)
         msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
         await bot.send_message(message.channel, msg)
         return
@@ -70,34 +70,34 @@ async def on_message(message): #Handles responding to messages
             else:
                 msg = retaliate(2).format(message)
             await bot.send_typing(message.channel)
-            await asyncio.sleep(0.7)
+            await asyncio.sleep(1)
             await bot.send_message(message.channel, msg)   
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
         msg = Lists.noRights[random.randint(0, len(Lists.noRights)-1)]
         await bot.send_typing(ctx.message.channel)
-        await asyncio.sleep(0.7)
+        await asyncio.sleep(1)
         await bot.send_message(ctx.message.channel, msg)
         return
     elif (ctx.message.channel.server.me.server_permissions.manage_messages == False):
         msg = Lists.botOutrank[random.randint(0, len(Lists.botOutrank)-1)]
         await bot.send_typing(ctx.message.channel)
-        await asyncio.sleep(0.7)
+        await asyncio.sleep(1)
         await bot.send_message(ctx.message.channel, msg)
         return
     else:
         if (not input.isdigit()):
             msg = Lists.badArg[random.randint(0, len(Lists.badArg)-1)]
             await bot.send_typing(ctx.message.channel)
-            await asyncio.sleep(0.7)
+            await asyncio.sleep(1)
             await bot.send_message(ctx.message.channel, msg)
             return          
         input = int(input)
         if (input < 2):
             msg = Lists.badArg[random.randint(0, len(Lists.badArg)-1)]
             await bot.send_typing(ctx.message.channel)
-            await asyncio.sleep(0.7)
+            await asyncio.sleep(1)
             await bot.send_message(ctx.message.channel, msg)
             return
         elif (input <= 100): #Command can clear from 2 to 100 messages by default
@@ -131,24 +131,24 @@ async def clear(ctx, input):
         elif(input >= 1000):
             msg = Lists.clear1k[random.randint(0, len(Lists.clear1k)-1)]
             await bot.send_typing(ctx.message.channel)
-            await asyncio.sleep(0.7)
+            await asyncio.sleep(1)
             await bot.send_message(ctx.message.channel, msg)
 @bot.command(pass_context = True)
 async def kick(ctx, user: discord.Member):
     if (ctx.message.author.server_permissions.kick_members == False or user.id == "187656701380526080"):
         msg = Lists.noRights[random.randint(0, len(Lists.noRights)-1)]
         await bot.send_typing(ctx.message.channel)
-        await asyncio.sleep(0.7)
+        await asyncio.sleep(1)
         await bot.send_message(ctx.message.channel, msg)
     elif(ctx.message.server.me.top_role <= user.top_role):
         msg = Lists.botOutrank[random.randint(0, len(Lists.botOutrank)-1)]
         await bot.send_typing(ctx.message.channel)
-        await asyncio.sleep(0.7)
+        await asyncio.sleep(1)
         await bot.send_message(ctx.message.channel, msg)
     elif(ctx.message.author.top_role <= user.top_role):
         msg = Lists.authorOutrank[random.randint(0, len(Lists.authorOutrank)-1)]
         await bot.send_typing(ctx.message.channel)
-        await asyncio.sleep(0.7)
+        await asyncio.sleep(1)
         await bot.send_message(ctx.message.channel, msg)
     else:
         await bot.say('Okay {}, time to go.'.format(user.mention))
