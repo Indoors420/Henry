@@ -50,7 +50,7 @@ clear1k = [ #Henry won't clear more than 999 messages at a time
     "I am way too lazy to even think of doing that.",
     "If you were smart you'd just ask me to clear 999 multiple times, but no.",
     "If you think I can do that then you are just another shit idiot.",
-    "Why don't you clear all those messages yourself you fucking nerd.",
+    "Why don't you clear all those messages yourself you fucking nerd?",
     "No. I refuse.",
 ]
 botOutrank = [ #If Henry isn't a high enough rank
@@ -194,6 +194,7 @@ verbs3 = [ #verbs3 verbs are not concatinated with a noun
     "stabilize the economy",
     "restart Isis",
     "commit insurance fraud",
+    "get on some hee hee haw haw shit",
 ]
 nouns1 = [
     "this sandwich",
@@ -270,7 +271,6 @@ retaliationNouns = [ #Nouns to use when responding to someone
     "your peepee",
 ]
 phrases = [
-    "This is a stantment.",
     "Girls don't want luxury handbags and expensive clothes they want frag grenades and illegal firearms",
     "Girls think it's sweet when u throw a fucking flash bang grenade thru their window in the morning to wake them up for work",
     "White people be like 'oh yea ur cruisin for a bruisin bud",
@@ -309,10 +309,10 @@ phrases = [
     "Cool and Good.",
     "Why do girls throw their pee away?",
     "And I freaked it.",
-    "Big body whats yo build boy.", 
+    "Big body whats yo build boy", 
     "Uzi not again.", 
     "My chain, my pants, my pants with the chain.", 
-    "Who them YBN Niggas why they always stuntin.",
+    "Who them YBN Niggas why they always stuntin?",
     "Bounce out with that fo fo.", 
     "Have you called your mother yet today and told her you loved her?",
     "School is very hard.", 
