@@ -270,6 +270,7 @@ retaliationNouns = [ #Nouns to use when responding to someone
     "your peepee",
 ]
 phrases = [
+    "F.R.E.E. that spells free, credit report .com baby",
     "In this world you either crank that soulja boy or it cranks you",
     "Democracy Time",
     "Eat spicy goodness like a boss.",
