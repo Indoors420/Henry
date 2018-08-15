@@ -144,9 +144,6 @@ async def kick(ctx, user: discord.Member):
         await bot.say('Okay {}, time to go.'.format(user.mention))
         await asyncio.sleep(3)
         await bot.kick(user)
-@bot.command(pass_context = True)
-async def bless(ctx):
-    await bot.send_message(ctx.message.channel, phraseGen())
 def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shitpost
     a = random.randint(0,10)
     if (a < 5):
@@ -171,36 +168,81 @@ def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shi
     shit = intro+verb+noun+end
     return(shit)
 def introGen(a): #Returns a sentence starter for use in random phrase generation
+    if (len(RecentGen.intros1) >= len(Lists.statementIntros) * 0.85):
+        del RecentGen.intros1[0]
+    elif(len(RecentGen.intros2) >= len(Lists.questionIntros) * 0.85):
+        del RecentGen.intros2[0]
+    elif(len(RecentGen.intros3) >= len(Lists.retaliationIntros) * 0.85):
+        del RecentGen.intros3[0]
     if (a == 1):
         i = random.randint(0, len(Lists.statementIntros)-1)
+        while (i in RecentGen.intros1):
+            i += 1
+        RecentGen.intros1.append(i)
         intro = Lists.statementIntros[i]
     elif (a == 2):
         i = random.randint(0, len(Lists.questionIntros)-1)
+        while (i in RecentGen.intros2):
+            i += 1
+        RecentGen.intros2.append(i)
         intro = Lists.questionIntros[i]
     elif (a == 3):
         i = random.randint(0, len(Lists.retaliationIntros)-1)
+        while (i in RecentGen.intros3):
+            i += 1
+        RecentGen.intros3.append(i)
         intro = Lists.retaliationIntros[i]
     return(intro)
 def verbGen(a): #Returns a verb for use in random phrase generation
+    if (len(RecentGen.verbs1) >= len(Lists.verbs1) * 0.85):
+        del RecentGen.verbs1[0]
+    elif (len(RecentGen.verbs2) >= len(Lists.verbs2) * 0.85):
+        del RecentGen.verbs2[0]
+    elif (len(RecentGen.verbs3) >= len(Lists.verbs3) * 0.85):
+        del RecentGen.verbs3[0]
     if (a == 1):
         i = random.randint(0,len(Lists.verbs1)-1)
+        while (i in RecentGen.verbs1):
+            i += 1
+        RecentGen.verbs1.append(i)
         verb = Lists.verbs1[i]
     elif (a == 2):
         i = random.randint(0,len(Lists.verbs2)-1)
+        while (i in RecentGen.verbs2):
+            i += 1
+        RecentGen.verbs2.append(i)
         verb = Lists.verbs2[i]
-    else:
+    elif (a == 3):
         i = random.randint(0,len(Lists.verbs3)-1)
+        while (i in RecentGen.verbs3):
+            i += 1
+        RecentGen.verbs3.append(i)
         verb = Lists.verbs3[i]
     return(verb)
 def nounGen(a): #Returns a noun/object for use in random phrase generation
+    if (len(RecentGen.nouns1) >= len(Lists.nouns1) * 0.85):
+        del RecentGen.nouns1[0]
+    elif (len(RecentGen.nouns2) >= len(Lists.nouns2) * 0.85):
+        del RecentGen.nouns2[0]
+    elif (len(RecentGen.nouns3) >= len(Lists.retaliationNouns) * 0.85):
+        del RecentGen.nouns3[0]
     if (a == 1):
         i = random.randint(0,len(Lists.nouns1)-1)
+        while (i in RecentGen.nouns1):
+            i += 1
+        RecentGen.nouns1.append(i)
         noun = Lists.nouns1[i]
     elif (a == 2):
         i = random.randint(0,len(Lists.nouns2)-1)
+        while (i in RecentGen.nouns2):
+            i += 1
+        RecentGen.nouns2.append(i)
         noun = Lists.nouns2[i]
-    else:
+    elif (a == 3):
         i = random.randint(0,len(Lists.retaliationNouns)-1)
+        while (i in RecentGen.nouns3):
+            i += 1
+        RecentGen.nouns3.append(i)
         noun = Lists.retaliationNouns[i]
     return(noun)
 def retaliate(a): #Returns a randomized threatening / offensive statement
@@ -214,7 +256,7 @@ def phraseGen(): #Returns a random phrase that Henry's creators made him able to
         del RecentGen.phrases[0]
     i = random.randint(0,len(Lists.phrases)-1)
     while (i in RecentGen.phrases):
-        i = random.randint(0,len(Lists.phrases)-1)
+        i += 1
     RecentGen.phrases.append(i)
     phrase = Lists.phrases[i]
     return(phrase)
