@@ -27,11 +27,11 @@ counter = 0
 @bot.event
 async def on_message(message): #Handles responding to messages
     global counter
-    if ("Henry, help" in message.content):
+'''    if ("Henry, help" in message.content):
         await asyncio.sleep(0.7)
         msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
         await bot.send_message(message.channel, msg)
-        return
+        return'''
     if (message.content.startswith("Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
     else:
