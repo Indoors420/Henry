@@ -24,6 +24,17 @@ async def on_command_error(error: Exception, ctx: commands.Context):
     else:
         print("ERROR!")
 counter = 0
+#"Recent" lists are used to store generated words/phrases and then to regenerate new gens so as not to be repetitive
+Nrecent1 = []
+Nrecent2 = []
+Nrecent3 = []
+Vrecent1 = []
+Vrecent2 = []
+Vrecent3 = []
+Irecent1 = []
+Irecent2 = []
+Irecent3 = []
+Precent = []
 @bot.event
 async def on_message(message): #Handles responding to messages
     global counter
@@ -153,82 +164,82 @@ def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shi
     shit = intro+verb+noun+end
     return(shit)
 def introGen(a): #Returns a sentence starter for use in random phrase generation
-    if (len(Lists.Irecent1) >= len(Lists.statementIntros)*0.9):
-        del Lists.Irecent1[0]
-    elif (len(Lists.Irecent2) >= len(Lists.questionIntros)*0.9):
-        del Lists.Irecent2[0]
-    elif (len(Lists.Irecent3) >= len(Lists.retaliationIntros)*0.9):
-        del Lists.Irecent3[0]
+    if (len(Irecent1) >= len(Lists.statementIntros)*0.9):
+        del Irecent1[0]
+    elif (len(Irecent2) >= len(Lists.questionIntros)*0.9):
+        del Irecent2[0]
+    elif (len(Irecent3) >= len(Lists.retaliationIntros)*0.9):
+        del Irecent3[0]
     if (a == 1):
         i = random.randint(0, len(Lists.statementIntros)-1)
-        while (i in Lists.Irecent1):
+        while (i in Irecent1):
             i = random.randint(0, len(Lists.statementIntros)-1)
         intro = Lists.statementIntros[i]
-        Lists.Irecent1.append(i)
+        Irecent1.append(i)
     elif (a == 2):
         i = random.randint(0, len(Lists.questionIntros)-1)
-        while (i in Lists.Irecent2):
+        while (i in Irecent2):
             i = random.randint(0, len(Lists.questionIntros)-1)
         intro = Lists.questionIntros[i]
-        Lists.Irecent2.append(i)
+        Irecent2.append(i)
     elif (a == 3):
         i = random.randint(0, len(Lists.retaliationIntros)-1)
-        while (i in Lists.Irecent3):
+        while (i in Irecent3):
             i = random.randint(0, len(Lists.retaliationIntros)-1)
         intro = Lists.retaliationIntros[i]
-        Lists.Irecent3.append(i)
+        Irecent3.append(i)
     return(intro)
 def verbGen(a): #Returns a verb for use in random phrase generation
-    if (len(Lists.Vrecent1) >= len(Lists.verbs1)*0.9):
-        del Lists.Vrecent1[0]
-    elif (len(Lists.Vrecent2) >= len(Lists.verbs2)*0.9):
-        del Lists.Vrecent2[0]
-    elif (len(Lists.Vrecent3) >= len(Lists.verbs3)*0.9):
-        del Lists.Vrecent3[0]
+    if (len(Vrecent1) >= len(Lists.verbs1)*0.9):
+        del Vrecent1[0]
+    elif (len(Vrecent2) >= len(Lists.verbs2)*0.9):
+        del Vrecent2[0]
+    elif (len(Vrecent3) >= len(Lists.verbs3)*0.9):
+        del Vrecent3[0]
     if (a == 1):
         i = random.randint(0,len(Lists.verbs1)-1)
-        while (i in Lists.Vrecent1):
+        while (i in Vrecent1):
             i = random.randint(0,len(Lists.verbs1)-1)
         verb = Lists.verbs1[i]
-        Lists.Vrecent1.append(i)
+        Vrecent1.append(i)
     elif (a == 2):
         i = random.randint(0,len(Lists.verbs2)-1)
-        while (i in Lists.Vrecent2):
+        while (i in Vrecent2):
             i = random.randint(0,len(Lists.verbs2)-1)
         verb = Lists.verbs2[i]
-        Lists.Vrecent2.append(i)
+        Vrecent2.append(i)
     else:
         i = random.randint(0,len(Lists.verbs3)-1)
-        while (i in Lists.Vrecent3):
+        while (i in Vrecent3):
             i = random.randint(0,len(Lists.verbs3)-1)
         verb = Lists.verbs3[i]
-        Lists.Vrecent3.append(i)      
+        Vrecent3.append(i)      
     return(verb)
 def nounGen(a): #Returns a noun/object for use in random phrase generation
-    if (len(Lists.Nrecent1) >= len(Lists.nouns1)*0.9):
-        del Lists.Nrecent1[0]
-    elif (len(Lists.Nrecent2) >= len(Lists.nouns2)*0.9):
-        del Lists.Nrecent2[0]
-    elif (len(Lists.Nrecent3) >= len(Lists.retaliationNouns)*0.9):
-        del Lists.Nrecent3[0]
+    if (len(Nrecent1) >= len(Lists.nouns1)*0.9):
+        del Nrecent1[0]
+    elif (len(Nrecent2) >= len(Lists.nouns2)*0.9):
+        del Nrecent2[0]
+    elif (len(Nrecent3) >= len(Lists.retaliationNouns)*0.9):
+        del Nrecent3[0]
     if (a == 1):
         i = random.randint(0,len(Lists.nouns1)-1)
-        while (i in Lists.Nrecent1):
+        while (i in Nrecent1):
             i = random.randint(0,len(Lists.nouns1)-1)
         noun = Lists.nouns1[i]
-        Lists.Nrecent1.append(i)
+        Nrecent1.append(i)
     elif (a == 2):
         i = random.randint(0,len(Lists.nouns2)-1)
-        while (i in Lists.Nrecent2):
+        while (i in Nrecent2):
             i = random.randint(0,len(Lists.nouns2)-1)
         noun = Lists.nouns2[i]
-        Lists.Nrecent2.append(i)
+        Nrecent2.append(i)
     else:
         i = random.randint(0,len(Lists.retaliationNouns)-1)
-        while (i in Lists.Nrecent3):
+        while (i in Nrecent3):
             i = random.randint(0,len(Lists.retaliationNouns)-1)
         noun = Lists.retaliationNouns[i]
-        Lists.Nrecent3.append(i)
+        Nrecent3.append(i)
     return(noun)
 def retaliate(a): #Returns a randomized threatening / offensive statement
     if (a == 1):
@@ -237,12 +248,12 @@ def retaliate(a): #Returns a randomized threatening / offensive statement
         response = phraseGen()
     return(response)
 def phraseGen(): #Returns a random phrase that Henry's creators made him able to say
-    if (len(Lists.Precent) >= len(Lists.phrases)*0.9):
-        del Lists.Precent[0]
+    if (len(Precent) >= len(Lists.phrases)*0.9):
+        del Precent[0]
     i = random.randint(0,len(Lists.phrases)-1)
-    while (i in Lists.Precent):
+    while (i in Precent):
         i = random.randint(0,len(Lists.phrases)-1)
     phrase = Lists.phrases[i]
-    Lists.Precent.append(i)
+    Precent.append(i)
     return(phrase)
 bot.run(os.getenv('TOKEN'))
