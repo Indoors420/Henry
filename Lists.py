@@ -22,7 +22,7 @@ commandError = [ #If someone calls a command that doesn't exist
     "Are you sure you typed that correctly retard?",
     "I don't know what the fuck you want from me.",
     "Take your time, try again.",
-    "I don't understand, try being slightly less retarted."
+    "I don't understand, try being slightly less retarted.",
 ]
 noRights = [ #If someone doesn't have server permission to use a command
     "Sorry, but you don't have any rights.",
@@ -30,7 +30,7 @@ noRights = [ #If someone doesn't have server permission to use a command
     "You are not tall enough to ride this ride.",
     "You are not authorized retard",
     "I would, but I won't",
-    "Bitch, shutcho ass up"
+    "Bitch, shutcho ass up",
     "Hey chief, I'm not capable of doing that for you",
     "Nah nigga you gay HAHA",
     "Nah nigga you ain't cool enough for that shit",
@@ -41,7 +41,7 @@ noRights = [ #If someone doesn't have server permission to use a command
 badArg = [ #If a command doesn't get the required or correct argument
     "Do not waste my time",
     "Come on now retard, lets be serious.",
-    "What kind of surface were you dropped head-first onto as a child?"
+    "What kind of surface were you dropped head-first onto as a child?",
 ]
 clear1k = [ #Henry won't clear more than 999 messages at a time
     "Do you really fucking expect me to clear that many messages right now?",
@@ -270,6 +270,11 @@ retaliationNouns = [ #Nouns to use when responding to someone
     "your peepee",
 ]
 phrases = [
+    "This is a stantment.",
+    "Girls don't want luxury handbags and expensive clothes they want frag grenades and illegal firearms",
+    "Girls think it's sweet when u throw a fucking flash bang grenade thru their window in the morning to wake them up for work",
+    "White people be like 'oh yea ur cruisin for a bruisin bud",
+    "When I say we gonna eat, I mean me and my tapeworm",
     "F.R.E.E. that spells free, credit report .com baby",
     "In this world you either crank that soulja boy or it cranks you",
     "Democracy Time",
@@ -336,14 +341,3 @@ phrases = [
     "My girl mad at me cuz I been straight keeping the cubes bruh lmao.", 
     "WNBA be like: 'Wow a new record for loads of laundry done and sandwiches made in a single game!'",
 ]
-#"Recent" lists are used to store generated words/phrases and then to regenerate new gens so as not to be repetitive
-Nrecent1 = []
-Nrecent2 = []
-Nrecent3 = []
-Vrecent1 = []
-Vrecent2 = []
-Vrecent3 = []
-Irecent1 = []
-Irecent2 = []
-Irecent3 = []
-Precent = []
