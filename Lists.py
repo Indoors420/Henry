@@ -194,6 +194,7 @@ verbs3 = [ #verbs3 verbs are not concatinated with a noun
     "stabilize the economy",
     "restart Isis",
     "commit insurance fraud",
+    "get on some hee hee haw haw shit",
 ]
 nouns1 = [
     "this sandwich",
