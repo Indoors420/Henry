@@ -1,6 +1,9 @@
 blackList = [ #People not allowed to use Henry's commands
     "150420859683733504", # @Lunar
 ]
+whitelist = [
+    "187656701380526080", # @Christ Himself
+]
 rejected = [
     "nah lol",
     "no",
