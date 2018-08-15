@@ -116,8 +116,15 @@ retaliationIntros = [ #Sentence starters for when Henry responds to someone
     "Don't think I won't ",
     "You're about to make me ",
     "I don't think you want me to ",
+    "I'm bouta ",
+    "I'm willing to ",
+    "I might ",
+    "It's time to ",
 ]
 verbs1 = [
+    "dox ",
+    "publish ",
+    "delete ",
     "tickle ",
     "weld ",
     "twist ",
@@ -174,6 +181,8 @@ verbs2 = [ #verbs2 verbs are concatinated with nouns3 nouns
     "look into ",
     "try ",
     "invest in ",
+    "check out ",
+    "look at some ",
 ]
 verbs3 = [ #verbs3 verbs are not concatinated with a noun
     "cuddle",
@@ -268,7 +277,18 @@ retaliationNouns = [ #Nouns to use when responding to someone
     "your dumb fucking face.",
     "your neighbors.",
     "both of your arms.",
-    "your peepee",
+    "your peepee.",
+    "all of your sauce.",
+    "your bucket.",
+    "your identity.",
+    "your social media.",
+    "your soul.",
+    "your rib cage.",
+    "your sweet milkey.",
+    "your private key.",
+    "your jimmies.",
+    "your mcm.",
+    "you mom.",
 ]
 phrases = [
     "Girls don't want luxury handbags and expensive clothes they want frag grenades and illegal firearms",
