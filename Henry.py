@@ -131,7 +131,7 @@ async def kick(ctx, user: discord.Member):
         await bot.kick(user)
 @bot.command(pass_context = True)
 async def bless(ctx):
-    await bot.send_message(ctx.message.channel, "test")
+    await bot.send_message(ctx.message.channel, phraseGen())
 def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shitpost
     a = random.randint(0,10)
     if (a < 5):
