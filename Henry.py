@@ -5,22 +5,25 @@ Awake = True
 @bot.event
 async def on_ready():
     seconds = 3601
-    while (not bot.is_closed and Awake):
-        GOAT = bot.get_server(os.getenv('GOAT'))
-        SUBPARMETA = bot.get_server(os.getenv('SUBPARMETA'))
-        HENRYSSERVER = bot.get_server(os.getenv('HENRYSSERVER'))
-        msg = shitpost()
-        await bot.send_typing(GOAT.get_channel(os.getenv('GOAT_GENERAL')))
-        await bot.send_typing(SUBPARMETA.get_channel(os.getenv('SUBPARMETA_HENRYS_CHANNEL')))
-        await bot.send_typing(HENRYSSERVER.get_channel(os.getenv('HENRYSSERVER_INTEGRATION')))
-        await asyncio.sleep(0.8)
-        await bot.send_message(GOAT.get_channel(os.getenv('GOAT_GENERAL')), msg)
-        await bot.send_message(SUBPARMETA.get_channel(os.getenv('SUBPARMETA_HENRYS_CHANNEL')), msg)
-        await bot.send_message(HENRYSSERVER.get_channel(os.getenv('HENRYSSERVER_INTEGRATION')), msg)
-        print("Meme Sent")
-        print("Waiting "+str(seconds)+" seconds...")
-        for _ in range(0,seconds):
+    while (not bot.is_closed):
+        if (Awake):
+            GOAT = bot.get_server(os.getenv('GOAT'))
+            SUBPARMETA = bot.get_server(os.getenv('SUBPARMETA'))
+            HENRYSSERVER = bot.get_server(os.getenv('HENRYSSERVER'))
+            msg = shitpost()
+            await bot.send_typing(GOAT.get_channel(os.getenv('GOAT_GENERAL')))
+            await bot.send_typing(SUBPARMETA.get_channel(os.getenv('SUBPARMETA_HENRYS_CHANNEL')))
+            await bot.send_typing(HENRYSSERVER.get_channel(os.getenv('HENRYSSERVER_INTEGRATION')))
             await asyncio.sleep(0.8)
+            await bot.send_message(GOAT.get_channel(os.getenv('GOAT_GENERAL')), msg)
+            await bot.send_message(SUBPARMETA.get_channel(os.getenv('SUBPARMETA_HENRYS_CHANNEL')), msg)
+            await bot.send_message(HENRYSSERVER.get_channel(os.getenv('HENRYSSERVER_INTEGRATION')), msg)
+            print("Meme Sent")
+            print("Waiting "+str(seconds)+" seconds...")
+        else:
+            print("Would say some shit but I'm schleep")
+        for _ in range(0,seconds):
+            await asyncio.sleep(1)
 @bot.event
 async def on_command_error(error: Exception, ctx: commands.Context):
     ignored = (commands.CommandNotFound, commands.UserInputError)
@@ -46,13 +49,15 @@ async def on_message(message): #Handles responding to messages
         return
     if (message.content.startswith("Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
-    elif (message.content.startswith("Goodnight Henry") and message.author.id in Lists.whitelist):
-        Awake = False
+    elif (message.content.startswith("Goodnight Henry")):
+        if (message.author.id in Lists.whitelist):
+            Awake = False
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(message.channel, "Goodnight Retard")
-    elif (message.content.startswith("Goodmorning Henry") and message.author.id in Lists.whitelist):
-        Awake = True
+    elif (message.content.startswith("Goodmorning Henry")):
+        if (message.author.id in Lists.whitelist):
+            Awake = True
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(message.channel, "Goodmorning Retard")
