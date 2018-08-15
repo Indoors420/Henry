@@ -195,7 +195,7 @@ def retaliate(a): #Returns a randomized threatening / offensive statement
         response = phraseGen()
     return(response)
 def phraseGen(): #Returns a random phrase that Henry's creators made him able to say
-    if (len(RecentGen.phrases) >= Lists.phrases * 0.85):
+    if (len(RecentGen.phrases) >= len(Lists.phrases) * 0.85):
         del RecentGen.phrases[0]
     i = random.randint(0,len(Lists.phrases)-1)
     while (i in RecentGen.phrases):
