@@ -1,6 +1,9 @@
 blackList = [ #People not allowed to use Henry's commands
     "150420859683733504", # @Lunar
 ]
+whitelist = [
+    "187656701380526080", # @Christ Himself
+]
 rejected = [
     "nah lol",
     "no",
@@ -116,8 +119,15 @@ retaliationIntros = [ #Sentence starters for when Henry responds to someone
     "Don't think I won't ",
     "You're about to make me ",
     "I don't think you want me to ",
+    "I'm bouta ",
+    "I'm willing to ",
+    "I might ",
+    "It's time to ",
 ]
 verbs1 = [
+    "dox ",
+    "publish ",
+    "delete ",
     "tickle ",
     "weld ",
     "twist ",
@@ -174,6 +184,8 @@ verbs2 = [ #verbs2 verbs are concatinated with nouns3 nouns
     "look into ",
     "try ",
     "invest in ",
+    "check out ",
+    "look at some ",
 ]
 verbs3 = [ #verbs3 verbs are not concatinated with a noun
     "cuddle",
@@ -268,12 +280,23 @@ retaliationNouns = [ #Nouns to use when responding to someone
     "your dumb fucking face.",
     "your neighbors.",
     "both of your arms.",
-    "your peepee",
+    "your peepee.",
+    "all of your sauce.",
+    "your bucket.",
+    "your identity.",
+    "your social media.",
+    "your soul.",
+    "your rib cage.",
+    "your sweet milkey.",
+    "your private key.",
+    "your jimmies.",
+    "your mcm.",
+    "you mom.",
 ]
 phrases = [
     "Girls don't want luxury handbags and expensive clothes they want frag grenades and illegal firearms",
     "Girls think it's sweet when u throw a fucking flash bang grenade thru their window in the morning to wake them up for work",
-    "White people be like 'oh yea ur cruisin for a bruisin bud",
+    "White people be like 'oh yea ur cruisin for a bruisin bud.'",
     "When I say we gonna eat, I mean me and my tapeworm",
     "F.R.E.E. that spells free, credit report .com baby",
     "In this world you either crank that soulja boy or it cranks you",
@@ -299,7 +322,7 @@ phrases = [
     "Hit the Quan.",
     "Gang practice at 8:30 tonight, bring your weapons.",
     "Water is cancelled.",
-    "If Chick Fil A sold bath bombs white people would break the econemy.",
+    "If Chick Fil A sold bath bombs white people would break the economy.",
     "I'm wearing Old Navy again.",
     "When I'm out of the cheese, I can't handle it.",
     "Who's REALLY responsible for Ｔｈｅ Ｃｏｌｏｓｓａｌ Ｐｉｌｌａｒ ｏｆ Ｗａｓｐ Ｅｇｇｓ?",
@@ -326,7 +349,7 @@ phrases = [
     "Fun fact about me: My dad hits me with his belt at least twice a week.", 
     "Hard to accept truth: silverware is NOT to be used in the 17th sector.", 
     "Bro I can't believe your grandma died I'm so sorry, btw get on fortnite.", 
-    "Which one of you cock suckers told my little brother that the moon is made of phili cheesesteaks?",
+    "Which one of you cock suckers told my little brother that the moon is made of philly cheesesteaks?",
     "Hey guys I can't get on xbox tonight my mom said I have to do my homework.", 
     "My mom just walked in on me watching Seinfeld oh my god I'm so dead.", 
     "I'm trying out for the varsity fortnite team, wish me luck.", 
