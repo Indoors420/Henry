@@ -293,7 +293,7 @@ retaliationNouns = [ #Nouns to use when responding to someone
 phrases = [
     "Girls don't want luxury handbags and expensive clothes they want frag grenades and illegal firearms",
     "Girls think it's sweet when u throw a fucking flash bang grenade thru their window in the morning to wake them up for work",
-    "White people be like 'oh yea ur cruisin for a bruisin bud",
+    "White people be like 'oh yea ur cruisin for a bruisin bud.'",
     "When I say we gonna eat, I mean me and my tapeworm",
     "F.R.E.E. that spells free, credit report .com baby",
     "In this world you either crank that soulja boy or it cranks you",
