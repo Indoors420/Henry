@@ -1,10 +1,11 @@
 import discord, random, asyncio, datetime, os, Lists, RecentGen
 from discord.ext import commands
 bot = commands.Bot(command_prefix="Henry, ")
+Awake = True
 @bot.event
 async def on_ready():
     seconds = 3601
-    while (not bot.is_closed):
+    while (not bot.is_closed and Awake):
         GOAT = bot.get_server(os.getenv('GOAT'))
         SUBPARMETA = bot.get_server(os.getenv('SUBPARMETA'))
         HENRYSSERVER = bot.get_server(os.getenv('HENRYSSERVER'))
@@ -36,6 +37,7 @@ counter = 0
 @bot.event
 async def on_message(message): #Handles responding to messages
     global counter
+    global Awake
     if ("Henry, help" in message.content):
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
@@ -44,6 +46,16 @@ async def on_message(message): #Handles responding to messages
         return
     if (message.content.startswith("Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
+    elif (message.content.startswith("Goodnight Henry") and message.author.id in Lists.whitelist):
+        Awake = False
+        await bot.send_typing(message.channel)
+        await asyncio.sleep(0.8)
+        await bot.send_message(message.channel, "Goodnight Retard")
+    elif (message.content.startswith("Goodmorning Henry") and message.author.id in Lists.whitelist):
+        Awake = True
+        await bot.send_typing(message.channel)
+        await asyncio.sleep(0.8)
+        await bot.send_message(message.channel, "Goodmorning Retard")
     else:
         chance = random.randint(0,100)
         if (message.author == bot.user):
