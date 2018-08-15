@@ -270,6 +270,7 @@ retaliationNouns = [ #Nouns to use when responding to someone
     "your peepee",
 ]
 phrases = [
+    "In this world you either crank that soulja boy or it cranks you",
     "Democracy Time",
     "Eat spicy goodness like a boss.",
     "I don't trust like that.",
