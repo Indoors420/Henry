@@ -199,7 +199,7 @@ def phraseGen(): #Returns a random phrase that Henry's creators made him able to
     while (i in RecentGen.phrases):
         i = random.randint(0,len(Lists.phrases)-1)
     RecentGen.phrases.append(i)
-    print("Recent Phrase Length: "+len(RecentGen.phrases))
+    print("Recent Phrase Length: "+str(len(RecentGen.phrases)))
     phrase = Lists.phrases[i]
     return(phrase)
 bot.run(os.getenv('TOKEN'))
