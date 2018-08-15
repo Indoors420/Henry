@@ -1,12 +1,30 @@
 phrases = [
 
 ]
-nouns = [
+nouns1 = [
 
 ]
-verbs = [
+nouns2 = [
 
 ]
-intros = [
+nouns3 = [
 
+]
+verbs1 = [
+
+]
+verbs2 = [
+
+]
+verbs3 = [
+
+]
+intros1 = [
+
+]
+intros2 = [
+
+]
+intros3 = [
+    
 ]
