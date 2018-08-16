@@ -30,9 +30,9 @@ async def on_command_error(error: Exception, ctx: commands.Context):
 async def on_message(message): #Handles responding to messages
     if ("henry" in message.content or "HENRY" in message.content or "Henry" in message.content or '<@472243513837355009>' in message.content):
         print("fuck")
-        bot.send_typing(message.channel)
+        await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
-        bot.send_message(message.channel, "Niggas be like: MAINTENANCE")
+        await bot.send_message(message.channel, "Niggas be like: MAINTENANCE")
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
