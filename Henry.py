@@ -28,14 +28,12 @@ async def on_command_error(error: Exception, ctx: commands.Context):
         print("ERROR!")
 @bot.event
 async def on_message(message): #Handles responding to messages
-    print("After: "+str(len(RecentGen.IDRecent)))
     if ("!Henry, help" in message.content):
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
         msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
         await bot.send_message(message.channel, msg)
         RecentGen.IDRecent.append(message.author.id)
-        print("Before: "+str(len(RecentGen.IDRecent)))
         if (len(RecentGen.IDRecent) > 1):
             del RecentGen.IDRecent[0]  
         return
@@ -49,7 +47,7 @@ async def on_message(message): #Handles responding to messages
             if (classify(lMessage) == 'why'):
                 msg = Lists.answerIntros[0]+nounGen(1)
             elif (classify(lMessage) == 'how'):
-                msg = Lists.answerIntros[1]+nounGen(1)+" "+verbGen(1)+nounGen(1)
+                msg = Lists.answerIntros[1]+nounGen(1)+" "+verbGen(1)+"s "+nounGen(1)
             elif (classify(lMessage) == 'who' or classify(lMessage) == 'what'):
                 msg = nounGen(1)
             elif (classify(lMessage) == 'when'):
@@ -170,16 +168,16 @@ def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shi
         end = "?"
     b = random.randint(0,100)
     if (b < 50):
-        verb = verbGen(1)
+        verb = verbGen(1)+" "
         noun = nounGen(1)
     elif (68 > b > 50):
-        verb = verbGen(2)
+        verb = verbGen(2)+" "
         noun = nounGen(2)
     elif (90 > b > 68):
         shit = phraseGen()
         return(shit)       
     else:
-        verb = verbGen(3)
+        verb = verbGen(3) #ends without noun
         noun = ""
     shit = intro+verb+noun+end
     return(shit)
