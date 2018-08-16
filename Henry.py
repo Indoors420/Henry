@@ -137,6 +137,8 @@ def classify(a):
         if (word in a):
             quest = True
             break
+        else:
+            quest = False
     return(quest)
 def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shitpost
     a = random.randint(0,10)
