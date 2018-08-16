@@ -40,7 +40,7 @@ async def on_message(message): #Handles responding to messages
         lMessage = message.content.lower()
         if (message.author == bot.user):
             return
-        elif (classify(lMessage) == True):
+        elif (classify(lMessage) == True and "henry" in lMessage or classify(lMessage) == True and '<@472243513837355009>' in lMessage):
             msg = Lists.answerIntros[random.randint(0,len(Lists.answerIntros)-1)]+nounGen(1)
             await bot.send_typing(message.channel)
             await asyncio.sleep(0.8)
