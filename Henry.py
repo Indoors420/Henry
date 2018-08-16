@@ -28,7 +28,8 @@ async def on_command_error(error: Exception, ctx: commands.Context):
         print("ERROR!")
 @bot.event
 async def on_message(message): #Handles responding to messages
-    del RecentGen.IDRecent[0]
+    if (len(RecentGen.IDRecent) > 0):
+        del RecentGen.IDRecent[0]
     if ("!Henry, help" in message.content):
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
