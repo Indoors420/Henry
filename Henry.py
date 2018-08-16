@@ -12,8 +12,8 @@ async def on_ready():
         await bot.send_message(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')), msg)
         print("Meme Sent")
         print("Waiting "+str(seconds)+" seconds...")
-    for _ in range(0,seconds):
-        await asyncio.sleep(1)
+        for _ in range(0,seconds):
+            await asyncio.sleep(1)
 @bot.event
 async def on_command_error(error: Exception, ctx: commands.Context):
     ignored = (commands.CommandNotFound, commands.UserInputError)
