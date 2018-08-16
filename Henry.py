@@ -135,7 +135,7 @@ async def kick(ctx, user: discord.Member):
 def classify(a):
     print("Message: "+a)
     for word in Lists.questionWords:
-        if (Lists.questionWords[word] in a):
+        if (word in a):
             quest = True
             break
     print(quest)
