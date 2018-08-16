@@ -44,7 +44,7 @@ async def on_message(message): #Handles responding to messages
             if (classify(lMessage) == 'why'):
                 msg = Lists.answerIntros[0]+nounGen(1)
             elif (classify(lMessage) == 'how'):
-                msg = Lists.answerIntros[1]+nounGen(1)
+                msg = Lists.answerIntros[1]+nounGen(1)+verbGen(1)+nounGen(1)
             elif (classify(lMessage) == 'who'):
                 msg = nounGen(1)
             else:
