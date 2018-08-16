@@ -62,23 +62,9 @@ authorOutrank = [ #If someone tries to use Henry's rank to kick someone higher t
     "Nice try",
     "I want to, but I'd probably get in trouble.",
 ]
-questionWords = [
-    "is",
-    "can",
-    "are",
-    "who",
-    "what",
-    "where",
-    "whom",
-    "whose",
-    "whos",
-    "why",
-    "which",
-    "how",
-    "when",
-]
 answerIntros = [
     "Because ",
+    "Well basically ",
 ]
 statementIntros = [
     "I ",
