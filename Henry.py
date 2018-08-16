@@ -133,6 +133,7 @@ async def kick(ctx, user: discord.Member):
         await asyncio.sleep(3)
         await bot.kick(user)
 def classify(a):
+    print("reached")
     for i in range(0,len(Lists.questionWords)-1):
         if (Lists.questionWords[i] in a):
             return(True)
