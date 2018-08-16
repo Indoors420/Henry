@@ -32,7 +32,8 @@ async def on_message(message): #Handles responding to messages
         return
     elif (message.content.startswith("Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
-    if ("henry" in message.content or "HENRY" in message.content or "Henry" in message.content or '<@472243513837355009>' in message.content):
+    lMessage = message.content.lower()
+    if ("henry" in lMessage or '<@472243513837355009>' in lMessage):
         print("fuck")
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
