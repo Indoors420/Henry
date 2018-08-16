@@ -138,6 +138,8 @@ def classify(a):
         if (word in a):
             type = 'question'
             break
+        else:
+            type = None
     return(type)
 def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shitpost
     a = random.randint(0,10)
