@@ -1,9 +1,3 @@
-blackList = [ #People not allowed to use Henry's commands
-    "150420859683733504", # @Lunar
-]
-whitelist = [
-    "187656701380526080", # @Christ Himself
-]
 rejected = [
     "nah lol",
     "no",
@@ -67,6 +61,24 @@ authorOutrank = [ #If someone tries to use Henry's rank to kick someone higher t
     "Clever but no",
     "Nice try",
     "I want to, but I'd probably get in trouble.",
+]
+questionWords = [
+    "is",
+    "can",
+    "are",
+    "who",
+    "what",
+    "where",
+    "whom",
+    "whose",
+    "whos",
+    "why",
+    "which",
+    "how",
+    "when",
+]
+answerIntros = [
+    "Because "
 ]
 statementIntros = [
     "I ",
@@ -320,4 +332,11 @@ phrases = [
     "This ain't it chief.",
     "My girl mad at me cuz I been straight keeping the cubes bruh lmao.", 
     "WNBA be like: 'Wow a new record for loads of laundry done and sandwiches made in a single game!'",
+]
+
+blackList = [ #People not allowed to use Henry's commands
+    "150420859683733504", # @Lunar
+]
+whitelist = [
+    "187656701380526080", # @Christ Himself
 ]
