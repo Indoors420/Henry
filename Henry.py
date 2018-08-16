@@ -136,7 +136,7 @@ def classify(a):
     print(a)
     print("Reached")
     for i in range(0,len(Lists.questionWords)):
-        print(str(i)+Lists.questionWords[i])
+        print(str(i)+" "+Lists.questionWords[i])
         if (Lists.questionWords[i] in a):
             quest = True
         else:
