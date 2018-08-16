@@ -34,7 +34,6 @@ async def on_message(message): #Handles responding to messages
         await bot.process_commands(message)
     lMessage = message.content.lower()
     if ("henry" in lMessage or '<@476854637371195433>' in lMessage):
-        print("fuck")
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(message.channel, phraseGen())
