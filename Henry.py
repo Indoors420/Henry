@@ -36,7 +36,7 @@ async def on_message(message): #Handles responding to messages
         print("fuck")
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
-        await bot.send_message(message.channel, "Niggas be like: MAINTENANCE")
+        await bot.send_message(message.channel, phraseGen())
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
