@@ -62,6 +62,14 @@ authorOutrank = [ #If someone tries to use Henry's rank to kick someone higher t
     "Nice try",
     "I want to, but I'd probably get in trouble.",
 ]
+times = [
+    "now",
+    "later",
+    "in a few",
+    "2 minutes",
+    "7:32",
+    "1 month, 14 days, 4 hours, 5 minuts, and 1 second",
+]
 answerIntros = [
     "Because ",
     "Well basically ",

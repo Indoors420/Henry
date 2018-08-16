@@ -45,8 +45,10 @@ async def on_message(message): #Handles responding to messages
                 msg = Lists.answerIntros[0]+nounGen(1)
             elif (classify(lMessage) == 'how'):
                 msg = Lists.answerIntros[1]+nounGen(1)+" "+verbGen(1)+nounGen(1)
-            elif (classify(lMessage) == 'who'):
+            elif (classify(lMessage) == 'who' or classify(lMessage) == 'what'):
                 msg = nounGen(1)
+            elif (classify(lMessage) == 'when'):
+                msg = Lists.times[random.randint(0,len(Lists.times)-1)]
             else:
                 msg = phraseGen()
             await bot.send_typing(message.channel)
@@ -141,6 +143,10 @@ def classify(a):
         type = 'how'
     elif ("who" in a):
         type = 'who'
+    elif ("what" in a):
+        type = 'what'
+    elif ("when" in a ):
+        type = 'when'
     else:
         type = None
     return(type)
