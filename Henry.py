@@ -28,11 +28,7 @@ async def on_command_error(error: Exception, ctx: commands.Context):
         print("ERROR!")
 @bot.event
 async def on_message(message): #Handles responding to messages
-'''    if (message.author == bot.user):
-        return
-    elif (message.content.startswith("Henry, ") and message.author.id not in Lists.blackList):
-        await bot.process_commands(message)'''
-    elif ("henry" in message.content or "HENRY" in message.content or "Henry" in message.content or '<@472243513837355009>' in message.content):
+    if ("henry" in message.content or "HENRY" in message.content or "Henry" in message.content or '<@472243513837355009>' in message.content):
         bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
         bot.send_message(message.channel, "Niggas be like: MAINTENANCE")
@@ -237,3 +233,7 @@ def phraseGen(): #Returns a random phrase that Henry's creators made him able to
     phrase = Lists.phrases[i]
     return(phrase)
 bot.run(os.getenv('TOKEN'))
+'''    if (message.author == bot.user):
+        return
+    elif (message.content.startswith("Henry, ") and message.author.id not in Lists.blackList):
+        await bot.process_commands(message)'''
