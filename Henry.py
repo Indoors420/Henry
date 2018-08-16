@@ -40,16 +40,17 @@ async def on_message(message): #Handles responding to messages
         lMessage = message.content.lower()
         if (message.author == bot.user):
             return
-        elif (classify(lMessage) == True and "henry" in lMessage or classify(lMessage) == True and '<@472243513837355009>' in lMessage):
-            msg = Lists.answerIntros[random.randint(0,len(Lists.answerIntros)-1)]+nounGen(1)
-            await bot.send_typing(message.channel)
-            await asyncio.sleep(0.8)
-            await bot.send_message(message.channel, msg)
         elif ("henry" in lMessage or '<@472243513837355009>' in lMessage):
-            msg = phraseGen()
-            await bot.send_typing(message.channel)
-            await asyncio.sleep(0.8)
-            await bot.send_message(message.channel, msg)
+            if (classify(lMessage) == True):
+                msg = Lists.answerIntros[random.randint(0,len(Lists.answerIntros)-1)]+nounGen(1)
+                await bot.send_typing(message.channel)
+                await asyncio.sleep(0.8)
+                await bot.send_message(message.channel, msg)
+            else:
+                msg = phraseGen()
+                await bot.send_typing(message.channel)
+                await asyncio.sleep(0.8)
+                await bot.send_message(message.channel, msg)
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
