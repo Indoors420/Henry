@@ -28,20 +28,17 @@ async def on_command_error(error: Exception, ctx: commands.Context):
         print("ERROR!")
 @bot.event
 async def on_message(message): #Handles responding to messages
-    lMessage = message.content.lower()
     if (message.author == bot.user):
         return
-    elif ("!Henry, help" in lMessage):
+    elif ("!Henry, help" in message.content):
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
         msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
         await bot.send_message(message.channel, msg)
         return
-    elif (lMessage.startswith("!Henry,  ") and message.author.id not in Lists.blackList):
-        bot.send_message(message.channel, "Processing Commands...")
+    elif (message.content.startswith("!Henry,  ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
-    else:
-        bot.send_message(message.channel, "ERROR!")
+    lMessage = message.content.lower()
     if ("henry" in lMessage or '<@476854637371195433>' in lMessage):
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
