@@ -81,8 +81,8 @@ async def clear(ctx, input):
         elif (input <= 100): #Command can clear from 2 to 100 messages by default
             amount = input
             mgs = [] #Empty list to put all the messages in the log
-            async for x in bot.logs_from(ctx.message.channel, limit = amount):
-                mgs.append(x)
+            async for i in bot.logs_from(ctx.message.channel, limit = amount):
+                mgs.append(i)
             await bot.delete_messages(mgs)
         elif(1000 > input > 100): #All the math below enables the bot to delete sets of 100 messages, + the remainder that isn't divisable by 100
             amount = 100
@@ -93,8 +93,8 @@ async def clear(ctx, input):
             remainder = input % 100
             for _ in range(0, loops):
                 mgs = [] #Empty list to put all the messages in the log
-                async for x in bot.logs_from(ctx.message.channel, limit = amount):
-                    mgs.append(x)
+                async for i in bot.logs_from(ctx.message.channel, limit = amount):
+                    mgs.append(i)
                 if (len(mgs) > 0): #Don't try to delete messages that don't exist
                     await bot.delete_messages(mgs)
                     await asyncio.sleep(0.8)
@@ -134,13 +134,11 @@ async def kick(ctx, user: discord.Member):
         await bot.kick(user)
 def classify(a):
     for i in range(0,len(Lists.questionWords)):
-        print("Reached")
         if (Lists.questionWords[i] in a):
-            print("True")
-            return(True)
+            quest = True
         else:
-            print("False")
-            return(False)
+            quest = False
+    return(quest)
 def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shitpost
     a = random.randint(0,10)
     if (a < 5):
