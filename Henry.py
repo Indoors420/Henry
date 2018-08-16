@@ -37,11 +37,19 @@ async def on_message(message): #Handles responding to messages
     elif (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
     else:
+        lMessage = message.content.lower()
         if (message.author == bot.user):
             return
-        elif ("henry" in message.content or '<@472243513837355009>' in message.content):
+        elif (classify(lMessage) == True):
+            msg = Lists.answerIntros[random.randint(0,len(Lists.answerIntros)-1)]+nounGen(1)
+            await bot.send_typing(message.channel)
+            await asyncio.sleep(0.8)
+            await bot.send_message(message.channel, msg)
+        elif ("henry" in lMessage or '<@472243513837355009>' in lMessage):
             msg = phraseGen()
-            await bot.send_message(message.channel, msg)   
+            await bot.send_typing(message.channel)
+            await asyncio.sleep(0.8)
+            await bot.send_message(message.channel, msg)
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
@@ -124,6 +132,12 @@ async def kick(ctx, user: discord.Member):
         await bot.say('Okay {}, time to go.'.format(user.mention))
         await asyncio.sleep(3)
         await bot.kick(user)
+def classify(a):
+    for i in range(0,len(Lists.questionWords)-1):
+        if (Lists.questionWords[i] in a):
+            return(True)
+        else:
+            return(False)
 def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shitpost
     a = random.randint(0,10)
     if (a < 5):
