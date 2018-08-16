@@ -1,19 +1,19 @@
 import discord, random, asyncio, datetime, os, Lists, RecentGen
 from discord.ext import commands
-bot = commands.Bot(command_prefix="!Henry,  ")
+bot = commands.Bot(command_prefix="!Henry, ")
 @bot.event
 async def on_ready():
     seconds = 3601
     while (not bot.is_closed):
-        HENRYSSERVER = bot.get_server(os.getenv('HENRYS_TESTING_SERVER'))
-        await asyncio.sleep(1)
-        await bot.send_typing(HENRYSSERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')))
+        HENRYS_TESTING_SERVER = bot.get_server(os.getenv('HENRYS_TESTING_SERVER'))
         msg = shitpost()
-        await bot.send_message(HENRYSSERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')), msg)
+        await bot.send_typing(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')))
+        await asyncio.sleep(0.8)
+        await bot.send_message(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')), msg)
         print("Meme Sent")
         print("Waiting "+str(seconds)+" seconds...")
-        for _ in range(0,seconds):
-            await asyncio.sleep(1)
+    for _ in range(0,seconds):
+        await asyncio.sleep(1)
 @bot.event
 async def on_command_error(error: Exception, ctx: commands.Context):
     ignored = (commands.CommandNotFound, commands.UserInputError)
@@ -28,21 +28,20 @@ async def on_command_error(error: Exception, ctx: commands.Context):
         print("ERROR!")
 @bot.event
 async def on_message(message): #Handles responding to messages
-    if (message.author == bot.user):
-        return
-    elif ("!Henry, help" in message.content):
+    if ("!Henry, help" in message.content):
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
         msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
         await bot.send_message(message.channel, msg)
         return
-    elif (message.content.startswith("!Henry,  ") and message.author.id not in Lists.blackList):
+    elif (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
-    lMessage = message.content.lower()
-    if ("henry" in lMessage or '<@476854637371195433>' in lMessage):
-        await bot.send_typing(message.channel)
-        await asyncio.sleep(0.8)
-        await bot.send_message(message.channel, phraseGen())
+    else:
+        if (message.author == bot.user):
+            return
+        elif ("henry" in message.content or '<@472243513837355009>' in message.content):
+            msg = phraseGen()
+            await bot.send_message(message.channel, msg)   
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
@@ -111,12 +110,12 @@ async def kick(ctx, user: discord.Member):
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(ctx.message.channel, msg)
-    elif(ctx.message.server.me.top_role <= user.top_role):
+    elif (ctx.message.server.me.top_role <= user.top_role):
         msg = Lists.botOutrank[random.randint(0, len(Lists.botOutrank)-1)]
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(ctx.message.channel, msg)
-    elif(ctx.message.author.top_role <= user.top_role):
+    elif (ctx.message.author.top_role <= user.top_role):
         msg = Lists.authorOutrank[random.randint(0, len(Lists.authorOutrank)-1)]
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
