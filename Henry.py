@@ -30,6 +30,12 @@ async def on_command_error(error: Exception, ctx: commands.Context):
 async def on_message(message): #Handles responding to messages
     if (message.author == bot.user):
         return
+    elif ("!Henry, help" in message.content):
+        await bot.send_typing(message.channel)
+        await asyncio.sleep(0.8)
+        msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
+        await bot.send_message(message.channel, msg)
+        return
     elif (message.content.startswith("!Henry,  ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
     lMessage = message.content.lower()
