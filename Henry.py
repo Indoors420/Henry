@@ -41,16 +41,17 @@ async def on_message(message): #Handles responding to messages
         if (message.author == bot.user):
             return
         elif ("henry" in lMessage or '<@472243513837355009>' in lMessage):
-            if (classify(lMessage) == 'question'):
-                msg = Lists.answerIntros[random.randint(0,len(Lists.answerIntros)-1)]+nounGen(1)
-                await bot.send_typing(message.channel)
-                await asyncio.sleep(0.8)
-                await bot.send_message(message.channel, msg)
+            if (classify(lMessage) == 'why'):
+                msg = Lists.answerIntros[0]+nounGen(1)
+            elif (classify(lMessage) == 'how'):
+                msg = Lists.answerIntros[1]+nounGen(1)
+            elif (classify(lMessage) == 'who'):
+                msg = nounGen(1)
             else:
                 msg = phraseGen()
-                await bot.send_typing(message.channel)
-                await asyncio.sleep(0.8)
-                await bot.send_message(message.channel, msg)
+            await bot.send_typing(message.channel)
+            await asyncio.sleep(0.8)
+            await bot.send_message(message.channel, msg)
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
@@ -134,12 +135,14 @@ async def kick(ctx, user: discord.Member):
         await asyncio.sleep(3)
         await bot.kick(user)
 def classify(a):
-    for word in Lists.questionWords:
-        if (word in a):
-            type = 'question'
-            break
-        else:
-            type = None
+    if ("why" in a):
+        type = 'why'
+    elif ("how" in a):
+        type = 'how'
+    elif ("who" in a):
+        type = 'who'
+    else:
+        type = None
     return(type)
 def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shitpost
     a = random.randint(0,10)
