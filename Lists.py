@@ -78,7 +78,9 @@ questionWords = [
     "when",
 ]
 answerIntros = [
-    "Because "
+    "Because ",
+    "Because ",
+    "Because ",
 ]
 statementIntros = [
     "I ",
