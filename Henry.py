@@ -133,14 +133,12 @@ async def kick(ctx, user: discord.Member):
         await asyncio.sleep(3)
         await bot.kick(user)
 def classify(a):
-    print(a)
-    print("Reached")
-    for i in range(0,len(Lists.questionWords)):
-        print(str(i)+" "+Lists.questionWords[i])
-        if (Lists.questionWords[i] in a):
+    print("Message: "+a)
+    for word in Lists.questionWords:
+        print(str(word)+" "+Lists.questionWords[i])
+        if (Lists.questionWords[word] in a):
             quest = True
-        else:
-            quest = False
+            break
     print(quest)
     return(quest)
 def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shitpost
