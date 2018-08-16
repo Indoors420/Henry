@@ -153,12 +153,12 @@ async def kick(ctx, user: discord.Member):
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(ctx.message.channel, msg)
-    elif(ctx.message.server.me.top_role <= user.top_role):
+    elif (ctx.message.server.me.top_role <= user.top_role):
         msg = Lists.botOutrank[random.randint(0, len(Lists.botOutrank)-1)]
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(ctx.message.channel, msg)
-    elif(ctx.message.author.top_role <= user.top_role):
+    elif (ctx.message.author.top_role <= user.top_role):
         msg = Lists.authorOutrank[random.randint(0, len(Lists.authorOutrank)-1)]
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
