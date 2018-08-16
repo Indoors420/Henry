@@ -134,12 +134,13 @@ async def kick(ctx, user: discord.Member):
         await bot.kick(user)
 def classify(a):
     for i in range(0,len(Lists.questionWords)-1):
+        print("Reached")
         if (Lists.questionWords[i] in a):
-            return(True)
             print("True")
+            return(True)
         else:
-            return(False)
             print("False")
+            return(False)
 def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shitpost
     a = random.randint(0,10)
     if (a < 5):
