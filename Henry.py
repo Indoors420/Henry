@@ -39,6 +39,11 @@ async def on_command_error(error: Exception, ctx: commands.Context):
 counter = 0
 @bot.event
 async def on_message(message): #Handles responding to messages
+    if (message.author == '297495225847382016'):
+        await bot.send_typing(message.channel)
+        await asyncio.sleep(0.8)
+        await bot.send_message(message.channel, "Shut up you're dating a freshmen.")
+        return  
     global counter
     global Awake
     if ("Henry, please help" in message.content):
@@ -65,11 +70,6 @@ async def on_message(message): #Handles responding to messages
         chance = random.randint(0,100)
         if (message.author == bot.user):
             return
-        if (message.author == '<@297495225847382016>'):
-            await bot.send_typing(message.channel)
-            await asyncio.sleep(0.8)
-            await bot.send_message(message.channel, "Shut up you're dating a freshmen.")
-            return  
         elif(message.author.bot == True and chance > 85):
             if (counter < 3): #Don't want bots to keep responding to eachother, 3 times is good
                 if (chance < 75):
