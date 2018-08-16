@@ -39,12 +39,6 @@ async def on_command_error(error: Exception, ctx: commands.Context):
 counter = 0
 @bot.event
 async def on_message(message): #Handles responding to messages
-    print(message.author)
-    if (message.author.id == '297495225847382016'):
-        await bot.send_typing(message.channel)
-        await asyncio.sleep(0.8)
-        await bot.send_message(message.channel, "Shut up you're dating a freshmen.")
-        return  
     global counter
     global Awake
     if ("Henry, please help" in message.content):
