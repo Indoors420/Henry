@@ -33,6 +33,8 @@ async def on_message(message): #Handles responding to messages
         await asyncio.sleep(0.8)
         msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
         await bot.send_message(message.channel, msg)
+        print("User: "+str(message.author)+" ID: "+str(message.author.id))
+        RecentGen.IDRecent.append(message.author.id)
         return
     elif (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
@@ -40,7 +42,7 @@ async def on_message(message): #Handles responding to messages
         lMessage = message.content.lower()
         if (message.author == bot.user):
             return
-        elif ("henry" in lMessage or '<@472243513837355009>' in lMessage):
+        elif ("henry" in lMessage or '<@472243513837355009>' in lMessage or message.author.id in RecentGen.IDRecent):
             if (classify(lMessage) == 'why'):
                 msg = Lists.answerIntros[0]+nounGen(1)
             elif (classify(lMessage) == 'how'):
@@ -54,6 +56,9 @@ async def on_message(message): #Handles responding to messages
             await bot.send_typing(message.channel)
             await asyncio.sleep(0.8)
             await bot.send_message(message.channel, msg)
+            print("User: "+str(message.author)+" ID: "+str(message.author.id))
+            RecentGen.IDRecent.append(message.author.id)
+            return
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
@@ -143,7 +148,7 @@ def classify(a):
         type = 'how'
     elif ("who" in a):
         type = 'who'
-    elif ("what" in a):
+    elif ("what" in a or "which" in a):
         type = 'what'
     elif ("when" in a ):
         type = 'when'
