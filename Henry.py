@@ -1,6 +1,6 @@
 import discord, random, asyncio, datetime, os, Lists, RecentGen
 from discord.ext import commands
-bot = commands.Bot(command_prefix="Henry, ")
+bot = commands.Bot(command_prefix="!Henry,  ")
 @bot.event
 async def on_ready():
     seconds = 3601
@@ -30,7 +30,7 @@ async def on_command_error(error: Exception, ctx: commands.Context):
 async def on_message(message): #Handles responding to messages
     if (message.author == bot.user):
         return
-    elif (message.content.startswith("Henry, ") and message.author.id not in Lists.blackList):
+    elif (message.content.startswith("!Henry,  ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
     lMessage = message.content.lower()
     if ("henry" in lMessage or '<@476854637371195433>' in lMessage):
