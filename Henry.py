@@ -28,9 +28,6 @@ async def on_command_error(error: Exception, ctx: commands.Context):
         print("ERROR!")
 @bot.event
 async def on_message(message): #Handles responding to messages
-    print("Before: "+str(len(RecentGen.IDRecent)))
-    if (len(RecentGen.IDRecent) > 1):
-        del RecentGen.IDRecent[0]
     print("After: "+str(len(RecentGen.IDRecent)))
     if ("!Henry, help" in message.content):
         await bot.send_typing(message.channel)
@@ -38,6 +35,9 @@ async def on_message(message): #Handles responding to messages
         msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
         await bot.send_message(message.channel, msg)
         RecentGen.IDRecent.append(message.author.id)
+        print("Before: "+str(len(RecentGen.IDRecent)))
+        if (len(RecentGen.IDRecent) > 1):
+            del RecentGen.IDRecent[0]  
         return
     elif (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
@@ -60,6 +60,9 @@ async def on_message(message): #Handles responding to messages
             await asyncio.sleep(0.8)
             await bot.send_message(message.channel, msg)
             RecentGen.IDRecent.append(message.author.id)
+            print("Before: "+str(len(RecentGen.IDRecent)))
+            if (len(RecentGen.IDRecent) > 1):
+                del RecentGen.IDRecent[0]           
             return
 @bot.command(pass_context = True)
 async def clear(ctx, input):
