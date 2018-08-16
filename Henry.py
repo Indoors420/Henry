@@ -1,6 +1,6 @@
 import discord, random, asyncio, datetime, os, Lists, RecentGen
 from discord.ext import commands
-bot = commands.Bot(command_prefix="Henry, ")
+bot = commands.Bot(command_prefix="!Henry, ")
 Awake = True
 @bot.event
 async def on_ready():
@@ -41,13 +41,13 @@ counter = 0
 async def on_message(message): #Handles responding to messages
     global counter
     global Awake
-    if ("Henry, help" in message.content):
+    if ("!Henry, help" in message.content):
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
         msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
         await bot.send_message(message.channel, msg)
         return
-    if (message.content.startswith("Henry, ") and message.author.id not in Lists.blackList):
+    if (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
     elif (message.content.startswith("Goodnight Henry")):
         if (message.author.id in Lists.whitelist):
