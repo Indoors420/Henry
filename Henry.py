@@ -8,15 +8,15 @@ async def on_ready():
     while (not bot.is_closed):
         if (Awake):
             GOAT = bot.get_server(os.getenv('GOAT'))
-            SUBPARMETA = bot.get_server(os.getenv('SUBPARMETA'))
+            NEW_META = bot.get_server(os.getenv('NEW_META'))
             HENRYSSERVER = bot.get_server(os.getenv('HENRYSSERVER'))
             msg = shitpost()
             await bot.send_typing(GOAT.get_channel(os.getenv('GOAT_GENERAL')))
-            await bot.send_typing(SUBPARMETA.get_channel(os.getenv('SUBPARMETA_HENRYS_CHANNEL')))
+            await bot.send_typing(NEW_META.get_channel(os.getenv('NEW_META_GENERAL')))
             await bot.send_typing(HENRYSSERVER.get_channel(os.getenv('HENRYSSERVER_INTEGRATION')))
             await asyncio.sleep(0.8)
             await bot.send_message(GOAT.get_channel(os.getenv('GOAT_GENERAL')), msg)
-            await bot.send_message(SUBPARMETA.get_channel(os.getenv('SUBPARMETA_HENRYS_CHANNEL')), msg)
+            await bot.send_message(NEW_META.get_channel(os.getenv('NEW_META_GENERAL')), msg)
             await bot.send_message(HENRYSSERVER.get_channel(os.getenv('HENRYSSERVER_INTEGRATION')), msg)
             print("Meme Sent")
             print("Waiting "+str(seconds)+" seconds...")
