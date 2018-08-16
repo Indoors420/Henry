@@ -37,7 +37,10 @@ async def on_message(message): #Handles responding to messages
         await bot.send_message(message.channel, msg)
         return
     elif (message.content.startswith("!Henry,  ") and message.author.id not in Lists.blackList):
+        bot.send_message(message.channel, "Processing Commands...")
         await bot.process_commands(message)
+    else:
+        bot.send_message(message.channel, "ERROR!")
     lMessage = message.content.lower()
     if ("henry" in lMessage or '<@476854637371195433>' in lMessage):
         await bot.send_typing(message.channel)
