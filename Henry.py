@@ -41,7 +41,7 @@ async def on_message(message): #Handles responding to messages
         if (message.author == bot.user):
             return
         elif ("henry" in lMessage or '<@472243513837355009>' in lMessage):
-            if (classify(lMessage) == True):
+            if (classify(lMessage) == 'question'):
                 msg = Lists.answerIntros[random.randint(0,len(Lists.answerIntros)-1)]+nounGen(1)
                 await bot.send_typing(message.channel)
                 await asyncio.sleep(0.8)
@@ -136,11 +136,9 @@ async def kick(ctx, user: discord.Member):
 def classify(a):
     for word in Lists.questionWords:
         if (word in a):
-            quest = True
+            type = 'question'
             break
-        else:
-            quest = False
-    return(quest)
+    return(type)
 def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shitpost
     a = random.randint(0,10)
     if (a < 5):
