@@ -28,14 +28,14 @@ async def on_command_error(error: Exception, ctx: commands.Context):
         print("ERROR!")
 @bot.event
 async def on_message(message): #Handles responding to messages
-    if (message.author.id not in RecentGen.IDRecent and message.author.id != bot.user.id):
-        RecentGen.IDRecent.append(message.author.id)
-        print("Post-Append: "+str(len(RecentGen.IDRecent)))
     if ("!Henry, help" in message.content):
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
         msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
         await bot.send_message(message.channel, msg)
+        if (message.author.id not in RecentGen.IDRecent and message.author.id != bot.user.id):
+            RecentGen.IDRecent.append(message.author.id)
+            print("Post-Append: "+str(len(RecentGen.IDRecent)))
         return
     elif (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
@@ -56,7 +56,10 @@ async def on_message(message): #Handles responding to messages
                 msg = phraseGen()
             await bot.send_typing(message.channel)
             await asyncio.sleep(0.8)
-            await bot.send_message(message.channel, msg)          
+            await bot.send_message(message.channel, msg)      
+            if (message.author.id not in RecentGen.IDRecent and message.author.id != bot.user.id):
+                RecentGen.IDRecent.append(message.author.id)
+                print("Post-Append: "+str(len(RecentGen.IDRecent)))    
             return
 @bot.command(pass_context = True)
 async def clear(ctx, input):
