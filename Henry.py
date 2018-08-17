@@ -1,21 +1,12 @@
 import discord, random, asyncio, datetime, os, Lists, RecentGen
 from discord.ext import commands
 bot = commands.Bot(command_prefix="!Henry, ")
-timesFive = 0
-replyReset = 5
 @bot.event
 async def on_ready():
-    global replyReset
-    global timesFive
-    await send()
+    seconds = 3601
     while (not bot.is_closed):
-        if (timesFive >= 720):
-            await send()
-        if (len(RecentGen.IDRecent) > 0):
-            del RecentGen.IDRecent[0]
-            print("Post-Del: "+str(len(RecentGen.IDRecent)))
-        await asyncio.sleep(replyReset)
-        timesFive += 1
+        await send()
+        await asyncio.sleep(seconds)
 @bot.event
 async def on_command_error(error: Exception, ctx: commands.Context):
     ignored = (commands.CommandNotFound, commands.UserInputError)
@@ -30,7 +21,6 @@ async def on_command_error(error: Exception, ctx: commands.Context):
         print("ERROR!")
 @bot.event
 async def on_message(message): #Handles responding to messages
-    global replyReset
     if ("!Henry, help" in message.content):
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
@@ -38,7 +28,6 @@ async def on_message(message): #Handles responding to messages
         await bot.send_message(message.channel, msg)
         if (message.author.id not in RecentGen.IDRecent and message.author.id != bot.user.id):
             RecentGen.IDRecent.append(message.author.id)
-            replyReset = 5
             print("Post-Append: "+str(len(RecentGen.IDRecent)))
         return
     elif (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
@@ -63,7 +52,6 @@ async def on_message(message): #Handles responding to messages
             await bot.send_message(message.channel, msg)      
             if (message.author.id not in RecentGen.IDRecent and message.author.id != bot.user.id):
                 RecentGen.IDRecent.append(message.author.id)
-                replyReset = 5
                 print("Post-Append: "+str(len(RecentGen.IDRecent)))    
             return
 @bot.command(pass_context = True)
