@@ -45,7 +45,7 @@ async def on_message(message): #Handles responding to messages
             return
         elif ("henry" in lMessage or '<@472243513837355009>' in lMessage or message.author.id in RecentGen.IDRecent):
             if (classify(lMessage) == 'why'):
-                msg = Lists.answerIntros[0]+nounGen(1)
+                msg = Lists.answerIntros[0]+nounGen(1)+" "+verbGen(1)+"ed "+nounGen(1)
             elif (classify(lMessage) == 'how'):
                 msg = Lists.answerIntros[1]+nounGen(1)+" "+verbGen(1)+"s "+nounGen(1)
             elif (classify(lMessage) == 'who' or classify(lMessage) == 'what'):
