@@ -7,6 +7,7 @@ async def on_ready():
     global timesFive
     await send()
     while (not bot.is_closed):
+        print("...")
         if (timesFive == 720):
             await send()
             timesFive = 0
