@@ -5,6 +5,7 @@ timesFive = 0
 @bot.event
 async def on_ready():
     global timesFive
+    await send()
     while (not bot.is_closed):
         if (timesFive >= 720):
             await send()
