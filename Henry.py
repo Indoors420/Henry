@@ -3,11 +3,13 @@ from discord.ext import commands
 bot = commands.Bot(command_prefix="!Henry, ")
 @bot.event
 async def on_ready():
+    await send()
     timesFive = 0
     while (not bot.is_closed):
         if (timesFive == 720):
             await send()
-        del RecentGen.IDRecent[0]
+        if (len(RecentGen.IDRecent) > 0):
+            del RecentGen.IDRecent[0]
         timesFive += 1
         await asyncio.sleep(5)
 @bot.event
