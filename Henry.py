@@ -12,7 +12,7 @@ async def on_ready():
         if (len(RecentGen.IDRecent) > 0):
             del RecentGen.IDRecent[0]
             print("Post-Del: "+str(len(RecentGen.IDRecent)))
-        await asyncio.sleep(5)
+        await asyncio.sleep(bot.replyReset)
         timesFive += 1
 @bot.event
 async def on_command_error(error: Exception, ctx: commands.Context):
@@ -35,6 +35,7 @@ async def on_message(message): #Handles responding to messages
         await bot.send_message(message.channel, msg)
         if (message.author.id not in RecentGen.IDRecent and message.author.id != bot.user.id):
             RecentGen.IDRecent.append(message.author.id)
+            bot.replyReset = 5
             print("Post-Append: "+str(len(RecentGen.IDRecent)))
         return
     elif (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
@@ -59,6 +60,7 @@ async def on_message(message): #Handles responding to messages
             await bot.send_message(message.channel, msg)      
             if (message.author.id not in RecentGen.IDRecent and message.author.id != bot.user.id):
                 RecentGen.IDRecent.append(message.author.id)
+                bot.replyReset = 5
                 print("Post-Append: "+str(len(RecentGen.IDRecent)))    
             return
 @bot.command(pass_context = True)
