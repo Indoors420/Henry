@@ -1,13 +1,16 @@
 import discord, random, asyncio, datetime, os, Lists, RecentGen
 from discord.ext import commands
 bot = commands.Bot(command_prefix="!Henry, ")
+timesFive = 0
 @bot.event
 async def on_ready():
-    seconds = 3601
-    await send()
+    global timesFive
     while (not bot.is_closed):
-        await send()
-        await asyncio.sleep(seconds)
+        if (timesFive >= 720):
+            await send()
+        del RecentGen.IDRecent[0]
+        await asyncio.sleep(5)
+        timesFive += 1
 @bot.event
 async def on_command_error(error: Exception, ctx: commands.Context):
     ignored = (commands.CommandNotFound, commands.UserInputError)
@@ -24,8 +27,6 @@ async def on_command_error(error: Exception, ctx: commands.Context):
 async def on_message(message): #Handles responding to messages
     if (message.author.id not in RecentGen.IDRecent and message.author.id != bot.user.id):
         RecentGen.IDRecent.append(message.author.id)
-        await asyncio.sleep(5)
-        del RecentGen.IDRecent[0]
     if ("!Henry, help" in message.content):
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
