@@ -8,7 +8,7 @@ async def on_ready():
     while (not bot.is_closed):
         if (timesFive >= 720):
             await send()
-        if (len(RecentGen.IDRecent) > 0)
+        if (len(RecentGen.IDRecent) > 0):
         del RecentGen.IDRecent[0]
         print(len(RecentGen.IDRecent))
         await asyncio.sleep(5)
