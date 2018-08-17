@@ -8,7 +8,9 @@ async def on_ready():
     while (not bot.is_closed):
         if (timesFive >= 720):
             await send()
+        if (len(RecentGen.IDRecent) > 0)
         del RecentGen.IDRecent[0]
+        print(len(RecentGen.IDRecent))
         await asyncio.sleep(5)
         timesFive += 1
 @bot.event
@@ -27,6 +29,7 @@ async def on_command_error(error: Exception, ctx: commands.Context):
 async def on_message(message): #Handles responding to messages
     if (message.author.id not in RecentGen.IDRecent and message.author.id != bot.user.id):
         RecentGen.IDRecent.append(message.author.id)
+        print(len(RecentGen.IDRecent))
     if ("!Henry, help" in message.content):
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
