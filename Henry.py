@@ -3,17 +3,13 @@ from discord.ext import commands
 bot = commands.Bot(command_prefix="!Henry, ")
 @bot.event
 async def on_ready():
-    seconds = 3601
+    timesFive = 0
     while (not bot.is_closed):
-        HENRYS_TESTING_SERVER = bot.get_server(os.getenv('HENRYS_TESTING_SERVER'))
-        msg = shitpost()
-        await bot.send_typing(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')))
-        await asyncio.sleep(0.8)
-        await bot.send_message(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')), msg)
-        print("Meme Sent")
-        print("Waiting "+str(seconds)+" seconds...")
-        for _ in range(0,seconds):
-            await asyncio.sleep(1)
+        if (timesFive == 720):
+            await send()
+        del RecentGen.IDRecent[0]
+        timesFive += 1
+        await asyncio.sleep(5)
 @bot.event
 async def on_command_error(error: Exception, ctx: commands.Context):
     ignored = (commands.CommandNotFound, commands.UserInputError)
@@ -28,14 +24,13 @@ async def on_command_error(error: Exception, ctx: commands.Context):
         print("ERROR!")
 @bot.event
 async def on_message(message): #Handles responding to messages
+    if (message.author.id not in RecentGen.IDRecent):
+        RecentGen.IDRecent.append(message.author.id)
     if ("!Henry, help" in message.content):
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
         msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
         await bot.send_message(message.channel, msg)
-        RecentGen.IDRecent.append(message.author.id)
-        if (len(RecentGen.IDRecent) > 1):
-            del RecentGen.IDRecent[0]  
         return
     elif (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
@@ -51,15 +46,12 @@ async def on_message(message): #Handles responding to messages
             elif (classify(lMessage) == 'who' or classify(lMessage) == 'what'):
                 msg = nounGen(1)
             elif (classify(lMessage) == 'when'):
-                msg = Lists.times[random.randint(0,len(Lists.times)-1)]
+                msg = Lists.times[random.randint(0,len(Lists.times)-1)] #needs alot improvement
             else:
                 msg = phraseGen()
             await bot.send_typing(message.channel)
             await asyncio.sleep(0.8)
-            await bot.send_message(message.channel, msg)
-            RecentGen.IDRecent.append(message.author.id)
-            if (len(RecentGen.IDRecent) > 1):
-                del RecentGen.IDRecent[0]           
+            await bot.send_message(message.channel, msg)          
             return
 @bot.command(pass_context = True)
 async def clear(ctx, input):
@@ -143,6 +135,13 @@ async def kick(ctx, user: discord.Member):
         await bot.say('Okay {}, time to go.'.format(user.mention))
         await asyncio.sleep(3)
         await bot.kick(user)
+async def send():
+    HENRYS_TESTING_SERVER = bot.get_server(os.getenv('HENRYS_TESTING_SERVER'))
+    msg = shitpost()
+    await bot.send_typing(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')))
+    await asyncio.sleep(0.8)
+    await bot.send_message(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')), msg)
+    print("Meme Sent")
 def classify(a):
     if ("why" in a):
         type = 'why'
