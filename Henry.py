@@ -5,15 +5,16 @@ timesFive = 0
 @bot.event
 async def on_ready():
     global timesFive
+    print(timesFive)
     await send()
     while (not bot.is_closed):
         if (timesFive == 720):
             await send()
             timesFive = 0
-        if (len(RecentGen.IDRecent) > 0):
-            print(RecentGen.IDRecent)
+        if (len(RecentGen.IDRecent) > 1):
+            print("Before: "+RecentGen.IDRecent)
             del RecentGen.IDRecent[0]
-            print(RecentGen.IDRecent)
+            print("After: "+RecentGen.IDRecent)
         timesFive += 1
         await asyncio.sleep(5) # Not Working
 @bot.event
