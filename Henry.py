@@ -1,17 +1,19 @@
 import discord, random, asyncio, datetime, os, Lists, RecentGen
 from discord.ext import commands
 bot = commands.Bot(command_prefix="!Henry, ")
+timesFive = 0
 @bot.event
 async def on_ready():
+    global timesFive
     await send()
-    timesFive = 0
     while (not bot.is_closed):
         if (timesFive == 720):
             await send()
+            timesFive = 0
         if (len(RecentGen.IDRecent) > 0):
             del RecentGen.IDRecent[0]
         timesFive += 1
-        await asyncio.sleep(5)
+        await asyncio.sleep(5) # Not Working
 @bot.event
 async def on_command_error(error: Exception, ctx: commands.Context):
     ignored = (commands.CommandNotFound, commands.UserInputError)
