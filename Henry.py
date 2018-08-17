@@ -58,7 +58,6 @@ async def on_message(message): #Handles responding to messages
             await asyncio.sleep(0.8)
             await bot.send_message(message.channel, msg)
             RecentGen.IDRecent.append(message.author.id)
-            print("Before: "+str(len(RecentGen.IDRecent)))
             if (len(RecentGen.IDRecent) > 1):
                 del RecentGen.IDRecent[0]           
             return
