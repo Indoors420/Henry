@@ -2,7 +2,7 @@ import discord, random, asyncio, datetime, os, Lists, RecentGen
 from discord.ext import commands
 bot = commands.Bot(command_prefix="!Henry, ")
 timesFive = 0
-replyReset = 0
+replyReset = 5
 @bot.event
 async def on_ready():
     global replyReset
