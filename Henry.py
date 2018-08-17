@@ -30,7 +30,7 @@ async def on_command_error(error: Exception, ctx: commands.Context):
         print("ERROR!")
 @bot.event
 async def on_message(message): #Handles responding to messages
-    if (message.author.id not in RecentGen.IDRecent):
+    if (message.author.id not in RecentGen.IDRecent and message.author.id != bot.user.id):
         RecentGen.IDRecent.append(message.author.id)
     if ("!Henry, help" in message.content):
         await bot.send_typing(message.channel)
