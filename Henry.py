@@ -21,39 +21,24 @@ async def on_command_error(error: Exception, ctx: commands.Context):
         print("ERROR!")
 @bot.event
 async def on_message(message): #Handles responding to messages
+    if (message.author == bot.user):
+        return
     if ("!Henry, help" in message.content):
+        msg = msgGen(message.content, 2)
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
-        msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
         await bot.send_message(message.channel, msg)
-        if (message.author.id not in RecentGen.IDRecent and message.author.id != bot.user.id):
-            RecentGen.IDRecent.append(message.author.id)
-            print("Post-Append: "+str(len(RecentGen.IDRecent)))
-        return
+        await bot.wait_for_message(author=message.author, timeout = 5.0)
+
     elif (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
     else:
         lMessage = message.content.lower()
-        if (message.author == bot.user):
-            return
-        elif ("henry" in lMessage or '<@472243513837355009>' in lMessage or message.author.id in RecentGen.IDRecent):
-            if (classify(lMessage) == 'why'):
-                msg = Lists.answerIntros[0]+nounGen(1)+" "+verbGen(1)+" "+nounGen(1)
-            elif (classify(lMessage) == 'how'):
-                msg = Lists.answerIntros[1]+nounGen(1)+" "+verbGen(1)+"s "+nounGen(1)
-            elif (classify(lMessage) == 'who' or classify(lMessage) == 'what'):
-                msg = nounGen(1)
-            elif (classify(lMessage) == 'when'):
-                msg = Lists.times[random.randint(0,len(Lists.times)-1)] #needs alot improvement
-            else:
-                msg = phraseGen()
+        if ("henry" in lMessage or '<@472243513837355009>' in lMessage):
+            msg = msgGen(lMessage, 1)
             await bot.send_typing(message.channel)
             await asyncio.sleep(0.8)
-            await bot.send_message(message.channel, msg)      
-            if (message.author.id not in RecentGen.IDRecent and message.author.id != bot.user.id):
-                RecentGen.IDRecent.append(message.author.id)
-                print("Post-Append: "+str(len(RecentGen.IDRecent)))    
-            return
+            await bot.send_message(message.channel, msg)
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
@@ -143,6 +128,21 @@ async def send():
     await asyncio.sleep(0.8)
     await bot.send_message(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')), msg)
     print("Meme Sent")
+def msgGen(a, b):
+    if (b == 1):
+        if (classify(a) == 'why'):
+            msg = Lists.answerIntros[0]+nounGen(1)+" "+verbGen(1)+" "+nounGen(1)
+        elif (classify(a) == 'how'):
+            msg = Lists.answerIntros[1]+nounGen(1)+" "+verbGen(1)+"s "+nounGen(1)
+        elif (classify(a) == 'who' or classify(a) == 'what'):
+            msg = nounGen(1)
+        elif (classify(a) == 'when'):
+            msg = Lists.times[random.randint(0,len(Lists.times)-1)] #needs alot improvement
+        else:
+            msg = phraseGen()
+    elif (b == 2):      
+        msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
+    return(msg)
 def classify(a):
     if ("why" in a):
         type = 'why'
