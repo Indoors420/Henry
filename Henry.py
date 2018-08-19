@@ -1,6 +1,11 @@
 import discord, random, asyncio, datetime, os, Lists, RecentGen
 from discord.ext import commands
+from ConversationManager import ConversationManager
+
 bot = commands.Bot(command_prefix="!Henry, ")
+conversations = ConversationManager(8.0)
+
+
 @bot.event
 async def on_ready():
     print("Henry is here to "+Lists.verbGen(1)+" "+Lists.nounGen(1))
@@ -17,7 +22,6 @@ async def on_command_error(error: Exception, ctx: commands.Context):
         return
     else:
         print("ERROR!")
-conversing = False
 @bot.event
 async def on_message(message): #Handles responding to messages
     if (message.author == bot.user):
@@ -31,23 +35,25 @@ async def on_message(message): #Handles responding to messages
     elif (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
     else:
+        author = message.author
         response = None
         lMessage = message.content.lower()
-        if (not conversing):
-            if ("henry" in lMessage or '<@476854637371195433>' in lMessage):
-                msg = msgGen(lMessage, 1)
-                await bot.send_typing(message.channel)
-                await asyncio.sleep(0.8)
-                await bot.send_message(message.channel, msg)
-                response = await bot.wait_for_message(author=message.author, timeout = 8.0)
-            while (response != None): #Currently brakes when user says henry as first response in convo
-                lMessage = response.content.lower()
-                msg = msgGen(lMessage, 1)
-                await bot.send_typing(message.channel)
-                await asyncio.sleep(0.8)
-                await bot.send_message(message.channel, msg)
-                response = await bot.wait_for_message(author=message.author, timeout = 8.0)
-                conversing = False
+
+        if conversations.conversing_with(author):
+            conversations.update(author)
+            msg = msgGen(lMessage, 1)
+            await bot.send_typing(message.channel)
+            await asyncio.sleep(0.8)
+            await bot.send_message(message.channel, msg)
+
+        elif ("henry" in lMessage or '<@476854637371195433>' in lMessage):
+            conversations.add(author)
+            msg = msgGen(lMessage, 1)
+            await bot.send_typing(message.channel)
+            await asyncio.sleep(0.8)
+            await bot.send_message(message.channel, msg)
+
+
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (not ctx.message.author.server_permissions.manage_messages):
