@@ -212,7 +212,6 @@ def verbGen(a): #Returns a verb for use in random phrase generation
         'deep fry', 
         'obliterate', 
         'systematically oppress', 
-        'fetch', 
         'flood', 
         'rob', 
         'compress', 
@@ -235,8 +234,7 @@ def verbGen(a): #Returns a verb for use in random phrase generation
         'bully', 
         'build', 
         'avoid', 
-        'crawl into',
-        'start', 
+        'crawl into', 
         'vaporize', 
         'criticize', 
         'beat', 
@@ -534,7 +532,7 @@ def timeGen():
         year = random.randint(2018, 2040)
         month = random.randint(1, 12)
         day = random.randint(1, 28) #need logic for limit of days for each month because the Gregorian calender is mega gay
-        time = datetime.datetime(year, month, day)
+        time = datetime.datetime(year, month, day).strftime('%d %B, %Y')
     else:
         time = times[random.randint(0, len(times)-1)]
     return(time)
