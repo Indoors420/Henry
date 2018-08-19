@@ -19,8 +19,10 @@ async def on_command_error(error: Exception, ctx: commands.Context):
         return
     else:
         print("ERROR!")
+conversing = False
 @bot.event
 async def on_message(message): #Handles responding to messages
+    global conversing
     if (message.author == bot.user):
         return
     if ("!Henry, help" in message.content):
@@ -33,19 +35,21 @@ async def on_message(message): #Handles responding to messages
     else:
         response = None
         lMessage = message.content.lower()
-        if ("henry" in lMessage or '<@472243513837355009>' in lMessage):
-            msg = msgGen(lMessage, 1)
-            await bot.send_typing(message.channel)
-            await asyncio.sleep(0.8)
-            await bot.send_message(message.channel, msg)
-            response = await bot.wait_for_message(author=message.author, timeout = 8.0)
-        while (response != None):
-            print("7")
-            msg = msgGen(lMessage, 1)
-            await bot.send_typing(message.channel)
-            await asyncio.sleep(0.8)
-            await bot.send_message(message.channel, msg)
-            response = await bot.wait_for_message(author=message.author, timeout = 8.0)   
+        if (conversing == False):
+            if ("henry" in lMessage or '<@472243513837355009>' in lMessage):
+                msg = msgGen(lMessage, 1)
+                await bot.send_typing(message.channel)
+                await asyncio.sleep(0.8)
+                await bot.send_message(message.channel, msg)
+                response = await bot.wait_for_message(author=message.author, timeout = 8.0)
+        else:
+            while (response != None):
+                conversing = True
+                msg = msgGen(lMessage, 1)
+                await bot.send_typing(message.channel)
+                await asyncio.sleep(0.8)
+                await bot.send_message(message.channel, msg)
+                response = await bot.wait_for_message(author=message.author, timeout = 8.0)   
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
