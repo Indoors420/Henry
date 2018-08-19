@@ -76,7 +76,7 @@ class ServerInstance:
                 amount = len(to_delete)
                 print(amount)
                 i = 0
-                while amount > 0:
+                while amount > 1:
                     lower = i
                     upper = amount % 100
                     upper = amount + 100 if amount // 100 == amount / 100 else amount
