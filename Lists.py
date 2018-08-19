@@ -136,7 +136,7 @@ def introGen(a, b): #Returns a sentence starter for use in random phrase generat
     ]
     retalIntros = [
         "I will ",
-        "I could",
+        "I could ",
         "I might have to ",
         "Don't make me ",
         "I have the urge to ",
@@ -377,9 +377,12 @@ def nounGen(a): #Returns a noun/object for use in random phrase generation
         "feet",
         "tiddy",
         "shoulders",
-        "posetions",
+        "possessions",
         "family",
         "dog",
+        "skin",
+        "borger",
+        "face",
     ]
     if (len(RecentGen.nouns1) >= len(nouns1) * 0.85):
         del RecentGen.nouns1[0]
@@ -418,6 +421,13 @@ def adjectiveGen():
         "gay",
         "rarted",
         "stickey",
+        "small",
+        "deformed",
+        "fat",
+        "juicy",
+        "insignificant",
+        "dumb",
+        "stupid",
     ]
     if (len(RecentGen.adjectives) >= len(adjectives) * 0.8):
         del RecentGen.adjectives[0]
