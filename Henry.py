@@ -150,7 +150,7 @@ def msgGen(a, b):
         else:
             chance = random.randint(0,1)
             if (chance == 0):
-                msg = Lists.phraseGen()
+                msg = Lists.phraseGen(1)
             else:
                 msg = retaliate()
     elif (b == 2):
@@ -186,7 +186,7 @@ def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shi
         verb = Lists.verbGen(2)+" "
         noun = Lists.nounGen(2)
     elif (90 > b > 68):
-        shit = Lists.phraseGen()
+        shit = Lists.phraseGen(1)
         return(shit)       
     else:
         verb = Lists.verbGen(3) #ends without noun
@@ -197,7 +197,9 @@ def retaliate():
     chance = random.randint(0,100)
     if (chance < 45):
         retaliation = "You are "+Lists.adjectiveGen()
-    elif (45 < chance < 85):
+    elif (45 <= chance <= 85):
         retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.nounGen(3)
+    elif (chance > 85):
+        retaliation = Lists.phraseGen(2)
     return(retaliation)
 bot.run(os.getenv('TOKEN'))

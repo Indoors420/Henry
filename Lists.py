@@ -421,7 +421,7 @@ def adjectiveGen():
     ]
     adj = adjectives[random.randint(0,len(adjectives)-1)]
     return(adj)
-def phraseGen(): #Returns a random phrase that Henry's creators made him able to say
+def phraseGen(a): #Returns a random phrase that Henry's creators made him able to say
     phrases = [
         "Girls don't want luxury handbags and expensive clothes they want frag grenades and illegal firearms",
         "Girls think it's sweet when u throw a fucking flash bang grenade thru their window in the morning to wake them up for work",
@@ -493,16 +493,31 @@ def phraseGen(): #Returns a random phrase that Henry's creators made him able to
         "My girl mad at me cuz I been straight keeping the cubes bruh lmao.", 
         "WNBA be like: 'Wow a new record for loads of laundry done and sandwiches made in a single game!'",
     ]
+    retalPhrases = [
+        "die",
+        "fuck you",
+        "I will tell mom",
+    ]
     if (len(RecentGen.phrases) >= len(phrases) * 0.85):
         del RecentGen.phrases[0]
-    i = random.randint(0,len(phrases)-1)
-    while (i in RecentGen.phrases):
-            if (i < len(phrases)-1):
-                i += 1
-            else:
-                i = 0
-    RecentGen.phrases.append(i)
-    phrase = phrases[i]
+    if (a == 1):
+        i = random.randint(0,len(phrases)-1)
+        while (i in RecentGen.phrases):
+                if (i < len(phrases)-1):
+                    i += 1
+                else:
+                    i = 0
+        RecentGen.phrases.append(i)
+        phrase = phrases[i]
+    elif (a == 2):
+        i = random.randint(0,len(retalPhrases)-1)
+        while (i in RecentGen.phrases2):
+                if (i < len(retalPhrases)-1):
+                    i += 1
+                else:
+                    i = 0
+        RecentGen.phrases2.append(i)
+        phrase = retalPhrases[i]
     return(phrase)
 def timeGen():
     times = [
