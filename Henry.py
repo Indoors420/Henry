@@ -20,10 +20,10 @@ async def on_command_error(error: Exception, ctx: commands.Context):
 conversing = False
 @bot.event
 async def on_message(message): #Handles responding to messages
-    global conversing
-    print('conversing: '+str(conversing))
     if (message.author == bot.user):
         return
+    global conversing
+    print('conversing: '+str(conversing))
     if ("!Henry, help" in message.content):
         msg = msgGen(message.content, 2)
         await bot.send_typing(message.channel)
