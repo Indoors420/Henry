@@ -1,3 +1,4 @@
+import RecentGen, random
 rejected = [
     "nah lol",
     "no",
@@ -69,136 +70,7 @@ times = [
     "2 minutes",
     "7:32",
     "1 month, 14 days, 4 hours, 5 minuts, and 1 second",
-]
-answerIntros = [
-    "Because ",
-    "Well basically ",
-]
-statementIntros = [
-    "I ",
-    "Well god fucking damn, I cannot believe that these niggas don't want to ",
-    "I doubt these niggas will appreciate it when I ", 
-    "My creator told me that I’m not allowed to ",
-    "I don’t think ya’ll understand the fact that I could ",
-    "I don’t think ya’ll understand the fact that I really want to ",
-    "I literally can’t even ",
-    "Hot damn it's time to ",
-    "I really think that is time for me to ",
-    "I'm finna ",
-    "If y'all don't stop, I might just ",
-    "Howdy folks, in today's video we are going to ",
-    "These niggas won't be laughing when I ",
-    "Shit, I really just might have to ",
-    "These niggas don't understand that I'm just tryna ",
-    "I'm going to make a genuine effort to ",
-    "Step 1: ",
-    "Step 2: ",
-    "Step 3: ",
-    "Step 4: ",
-    "Step 5: ",
-    "Fuck it, I'm just gonna ",
-    "I think it would be best if everyone could just ",
-    "I'm tryna ",
-    "I need 5 people to help me ",
-    "Idea: ",
-    "I'm finna fake being sick so I can ",
-]
-questionIntros = [
-    "Okay, so when should I ",
-    "Who dares me to ",
-    "Why don't y'all just ",
-    "Anyone care if I ",
-    "Why does everyone get mad when I ",
-    "Y'all mind if I ",
-    "Can anyone help me ",
-    "What if we all just ",
-    "Who's tryna ",
-    "Anyone wanna ",
-    "Anyone down to ",
-]
-verbs1 = [
-    'dox', 
-    'publish', 
-    'delete', 
-    'tickle', 
-    'weld', 
-    'twist', 
-    'soil', 
-    'relocate', 
-    'submerge', 
-    'climb', 
-    'focus on', 
-    'hide from', 
-    'penetrate', 
-    'shred', 
-    'go beast mode on', 
-    'permanently disable', 
-    'deep fry', 
-    'obliterate', 
-    'systematically oppress', 
-    'fetch', 
-    'flood', 
-    'rob', 
-    'compress', 
-    'bless', 
-    'invent', 
-    'chew', 
-    'lick', 
-    'castrate', 
-    'eat', 
-    'view', 
-    'consume', 
-    'shwamp', 
-    'assassinate', 
-    'burn', 
-    'capture', 
-    'fuck', 
-    'undress', 
-    'sodomize', 
-    'drown', 
-    'bully', 
-    'build', 
-    'avoid', 
-    'crawl into',
-    'start', 
-    'vaporize', 
-    'criticize', 
-    'beat', 
-    'slap', 
-    'grill', 
-    'donate', 
-    'bite', 
-    'assault', 
-    'rewind', 
-    'prank',
-]
-verbs2 = [ #verbs2 verbs are concatinated with nouns3 nouns
-    "look into",
-    "try",
-    "invest in",
-    "check out",
-    "look at some",
-]
-verbs3 = [ #verbs3 verbs are not concatinated with a noun
-    "cuddle",
-    "do the 'in my feelings' challenge",
-    "cry",
-    "crawl",
-    "undress",
-    "start some shit",
-    "sodomize a disabled walrus",
-    "assault the disabled",
-    "pillage",
-    "die",
-    "evolve",
-    "condensate",
-    "pillage",
-    "bust a move",
-    "do it to 'em",
-    "stabilize the economy",
-    "restart Isis",
-    "commit insurance fraud",
-    "get on some hee hee haw haw shit",
+    #Make a random time gernerator - multiple formats
 ]
 nouns1 = [
     "this sandwich",
@@ -327,10 +199,259 @@ phrases = [
     "My girl mad at me cuz I been straight keeping the cubes bruh lmao.", 
     "WNBA be like: 'Wow a new record for loads of laundry done and sandwiches made in a single game!'",
 ]
-
+adjectives = [
+    "gay",
+    "rarted",
+    "stickey",
+]
 blackList = [ #People not allowed to use Henry's commands
     "150420859683733504", # @Lunar
 ]
 whitelist = [
     "187656701380526080", # @Christ Himself
 ]
+def introGen(a, b): #Returns a sentence starter for use in random phrase generation
+    statementIntros = [
+        "I ",
+        "Well god fucking damn, I cannot believe that these niggas don't want to ",
+        "I doubt these niggas will appreciate it when I ", 
+        "My creator told me that I’m not allowed to ",
+        "I don’t think ya’ll understand the fact that I could ",
+        "I don’t think ya’ll understand the fact that I really want to ",
+        "I literally can’t even ",
+        "Hot damn it's time to ",
+        "I really think that is time for me to ",
+        "I'm finna ",
+        "If y'all don't stop, I might just ",
+        "Howdy folks, in today's video we are going to ",
+        "These niggas won't be laughing when I ",
+        "Shit, I really just might have to ",
+        "These niggas don't understand that I'm just tryna ",
+        "I'm going to make a genuine effort to ",
+        "Step 1: ",
+        "Step 2: ",
+        "Step 3: ",
+        "Step 4: ",
+        "Step 5: ",
+        "Fuck it, I'm just gonna ",
+        "I think it would be best if everyone could just ",
+        "I'm tryna ",
+        "I need 5 people to help me ",
+        "Idea: ",
+        "I'm finna fake being sick so I can ",
+    ]
+    questionIntros = [
+        "Okay, so when should I ",
+        "Who dares me to ",
+        "Why don't y'all just ",
+        "Anyone care if I ",
+        "Why does everyone get mad when I ",
+        "Y'all mind if I ",
+        "Can anyone help me ",
+        "What if we all just ",
+        "Who's tryna ",
+        "Anyone wanna ",
+        "Anyone down to ",
+    ]
+    answerIntros1 = [
+        "Because ",
+    ]
+    answerIntros2 = [
+        "Well basically ",
+    ]
+    if (len(RecentGen.intros1) >= len(statementIntros) * 0.85):
+        del RecentGen.intros1[0]
+    elif(len(RecentGen.intros2) >= len(questionIntros) * 0.85):
+        del RecentGen.intros2[0]
+    if (a == 1):
+        i = random.randint(0, len(statementIntros)-1)
+        while (i in RecentGen.intros1):
+            if (i < len(statementIntros)-1):
+                i += 1
+            else:
+                i = 0
+        RecentGen.intros1.append(i)
+        intro = statementIntros[i]
+    elif (a == 2):
+        i = random.randint(0, len(questionIntros)-1)
+        while (i in RecentGen.intros2):
+            if (i < len(questionIntros)-1):
+                i += 1
+            else:
+                i = 0
+        RecentGen.intros2.append(i)
+        intro = questionIntros[i]
+    elif (a == 3):
+        if (b == 1):
+            i = random.randint(0, len(answerIntros1)-1)
+            while (i in RecentGen.intros3):
+                if (i < len(answerIntros1)-1):
+                    i += 1
+                else:
+                    i = 0
+            intro = answerIntros1[i]
+        elif (b == 2):
+            i = random.randint(0, len(answerIntros2)-1)
+            while (i in RecentGen.intros3):
+                if (i < len(answerIntros2)-1):
+                    i += 1
+                else:
+                    i = 0
+            intro = answerIntros2[i]
+        RecentGen.intros3.append(i)  
+    return(intro)
+def verbGen(a): #Returns a verb for use in random phrase generation
+    verbs1 = [
+        'dox', 
+        'publish', 
+        'delete', 
+        'tickle', 
+        'weld', 
+        'twist', 
+        'soil', 
+        'relocate', 
+        'submerge', 
+        'climb', 
+        'focus on', 
+        'hide from', 
+        'penetrate', 
+        'shred', 
+        'go beast mode on', 
+        'permanently disable', 
+        'deep fry', 
+        'obliterate', 
+        'systematically oppress', 
+        'fetch', 
+        'flood', 
+        'rob', 
+        'compress', 
+        'bless', 
+        'invent', 
+        'chew', 
+        'lick', 
+        'castrate', 
+        'eat', 
+        'view', 
+        'consume', 
+        'shwamp', 
+        'assassinate', 
+        'burn', 
+        'capture', 
+        'fuck', 
+        'undress', 
+        'sodomize', 
+        'drown', 
+        'bully', 
+        'build', 
+        'avoid', 
+        'crawl into',
+        'start', 
+        'vaporize', 
+        'criticize', 
+        'beat', 
+        'slap', 
+        'grill', 
+        'donate', 
+        'bite', 
+        'assault', 
+        'rewind', 
+        'prank',
+    ]
+    verbs2 = [ #verbs2 verbs are concatinated with nouns3 nouns
+        "look into",
+        "try",
+        "invest in",
+        "check out",
+        "look at some",
+    ]
+    verbs3 = [ #verbs3 verbs are not concatinated with a noun
+        "cuddle",
+        "do the 'in my feelings' challenge",
+        "cry",
+        "crawl",
+        "undress",
+        "start some shit",
+        "sodomize a disabled walrus",
+        "assault the disabled",
+        "pillage",
+        "die",
+        "evolve",
+        "condensate",
+        "pillage",
+        "bust a move",
+        "do it to 'em",
+        "stabilize the economy",
+        "restart Isis",
+        "commit insurance fraud",
+        "get on some hee hee haw haw shit",
+    ]
+    if (len(RecentGen.verbs1) >= len(verbs1) * 0.85):
+        del RecentGen.verbs1[0]
+    elif (len(RecentGen.verbs2) >= len(verbs2) * 0.85):
+        del RecentGen.verbs2[0]
+    elif (len(RecentGen.verbs3) >= len(verbs3) * 0.85):
+        del RecentGen.verbs3[0]
+    if (a == 1):
+        i = random.randint(0,len(verbs1)-1)
+        while (i in RecentGen.verbs1):
+            if (i < len(verbs1)-1):
+                i += 1
+            else:
+                i = 0
+        RecentGen.verbs1.append(i)
+        verb = verbs1[i]
+    elif (a == 2):
+        i = random.randint(0,len(verbs2)-1)
+        while (i in RecentGen.verbs2):
+            if (i < len(verbs2)-1):
+                i += 1
+            else:
+                i = 0
+        RecentGen.verbs2.append(i)
+        verb = verbs2[i]
+    elif (a == 3):
+        i = random.randint(0,len(verbs3)-1)
+        while (i in RecentGen.verbs3):
+            if (i < len(verbs3)-1):
+                i += 1
+            else:
+                i = 0
+        RecentGen.verbs3.append(i)
+        verb = verbs3[i]
+    return(verb)
+def nounGen(a): #Returns a noun/object for use in random phrase generation
+    if (len(RecentGen.nouns1) >= len(nouns1) * 0.85):
+        del RecentGen.nouns1[0]
+    elif (len(RecentGen.nouns2) >= len(nouns2) * 0.85):
+        del RecentGen.nouns2[0]
+    if (a == 1):
+        i = random.randint(0,len(nouns1)-1)
+        while (i in RecentGen.nouns1):
+            if (i < len(nouns1)-1):
+                i += 1
+            else:
+                i = 0
+        RecentGen.nouns1.append(i)
+        noun = nouns1[i]
+    elif (a == 2):
+        i = random.randint(0,len(nouns2)-1)
+        while (i in RecentGen.nouns2):
+            if (i < len(nouns2)-1):
+                i += 1
+            else:
+                i = 0
+        RecentGen.nouns2.append(i)
+        noun = nouns2[i]
+    return(noun)
+def phraseGen(): #Returns a random phrase that Henry's creators made him able to say
+    if (len(RecentGen.phrases) >= len(phrases) * 0.85):
+        del RecentGen.phrases[0]
+    i = random.randint(0,len(phrases)-1)
+    while (i in RecentGen.phrases):
+            if (i < len(phrases)-1):
+                i += 1
+            else:
+                i = 0
+    RecentGen.phrases.append(i)
+    phrase = phrases[i]
+    return(phrase)
