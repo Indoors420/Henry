@@ -53,7 +53,6 @@ class ServerInstance:
                     msg = Writer.respond(content)
                 await send(self.bot, channel, msg)
                 
-
     async def command_clear(self, ctx, arg: str):
         message = ctx.message
         author = message.author
@@ -71,7 +70,7 @@ class ServerInstance:
             arg = int(arg)
             if arg < 2:
                 await send(self.bot, channel, Lists.errorMsgGen(4))
-            elif arg < 1000:
+            else:
                 to_delete = [msg async for msg in self.bot.logs_from(channel, limit=arg)]
 
                 amount = len(to_delete)
