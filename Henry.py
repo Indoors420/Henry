@@ -33,9 +33,12 @@ async def on_message(message): #Handles responding to messages
     else:
         response = None
         lMessage = message.content.lower()
-        print("Conversing: "+str(conversing))
         if (conversing == False):
+            print("?1")
+            print("Conversing: "+str(conversing))
             if ("henry" in lMessage or '<@472243513837355009>' in lMessage):
+                print("?2")
+                print("Conversing: "+str(conversing))
                 msg = msgGen(lMessage, 1)
                 await bot.send_typing(message.channel)
                 await asyncio.sleep(0.8)
