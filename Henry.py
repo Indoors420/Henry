@@ -12,7 +12,7 @@ async def on_command_error(error: Exception, ctx: commands.Context):
     if isinstance(error, ignored):
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
-        msg = Lists.commandError[random.randint(0,len(Lists.commandError)-1)]
+        msg = Lists.errorMsgGen(2)
         await bot.send_message(ctx.message.channel, msg)
         return
     else:
@@ -40,9 +40,7 @@ async def on_message(message): #Handles responding to messages
                 await asyncio.sleep(0.8)
                 await bot.send_message(message.channel, msg)
                 response = await bot.wait_for_message(author=message.author, timeout = 8.0)
-                if (response != None):
-                    conversing = True
-            while (response != None):
+            while (response != None): #Currently brakes when user says henry as first response in convo
                 msg = msgGen(lMessage, 1)
                 await bot.send_typing(message.channel)
                 await asyncio.sleep(0.8)
@@ -52,27 +50,27 @@ async def on_message(message): #Handles responding to messages
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
-        msg = Lists.noRights[random.randint(0, len(Lists.noRights)-1)]
+        msg = Lists.errorMsgGen(3)
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(ctx.message.channel, msg)
         return
     elif (ctx.message.channel.server.me.server_permissions.manage_messages == False):
-        msg = Lists.botOutrank[random.randint(0, len(Lists.botOutrank)-1)]
+        msg = Lists.errorMsgGen(6)
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(ctx.message.channel, msg)
         return
     else:
         if (not input.isdigit()):
-            msg = Lists.badArg[random.randint(0, len(Lists.badArg)-1)]
+            msg = Lists.errorMsgGen(4)
             await bot.send_typing(ctx.message.channel)
             await asyncio.sleep(0.8)
             await bot.send_message(ctx.message.channel, msg)
             return          
         input = int(input)
         if (input < 2):
-            msg = Lists.badArg[random.randint(0, len(Lists.badArg)-1)]
+            msg = Lists.errorMsgGen(4)
             await bot.send_typing(ctx.message.channel)
             await asyncio.sleep(0.8)
             await bot.send_message(ctx.message.channel, msg)
@@ -106,24 +104,24 @@ async def clear(ctx, input):
             else:
                 return
         elif(input >= 1000):
-            msg = Lists.clear1k[random.randint(0, len(Lists.clear1k)-1)]
+            msg = Lists.errorMsgGen(5)
             await bot.send_typing(ctx.message.channel)
             await asyncio.sleep(0.8)
             await bot.send_message(ctx.message.channel, msg)
 @bot.command(pass_context = True)
 async def kick(ctx, user: discord.Member):
     if (ctx.message.author.server_permissions.kick_members == False or user.id == "187656701380526080"):
-        msg = Lists.noRights[random.randint(0, len(Lists.noRights)-1)]
+        msg = Lists.errorMsgGen(3)
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(ctx.message.channel, msg)
     elif (ctx.message.server.me.top_role <= user.top_role):
-        msg = Lists.botOutrank[random.randint(0, len(Lists.botOutrank)-1)]
+        msg = Lists.errorMsgGen(6)
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(ctx.message.channel, msg)
     elif (ctx.message.author.top_role <= user.top_role):
-        msg = Lists.authorOutrank[random.randint(0, len(Lists.authorOutrank)-1)]
+        msg = Lists.errorMsgGen(7)
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(ctx.message.channel, msg)
@@ -147,7 +145,7 @@ def msgGen(a, b):
         elif (classify(a) == 'who' or classify(a) == 'what'):
             msg = Lists.nounGen(1)
         elif (classify(a) == 'when'):
-            msg = Lists.times[random.randint(0,len(Lists.times)-1)] #needs alot improvement
+            msg = Lists.timeGen()
         else:
             chance = random.randint(0,100)
             if (chance < 75):
@@ -155,7 +153,7 @@ def msgGen(a, b):
             else:
                 msg = retaliate()
     elif (b == 2):
-        msg = Lists.rejected[random.randint(0,len(Lists.rejected)-1)]
+        msg = Lists.errorMsgGen(1)
     return(msg)
 def classify(a):
     if ("why" in a):

@@ -1,88 +1,90 @@
-import RecentGen, random
-rejected = [
-    "nah lol",
-    "no",
-    "maybe later",
-    "don't feel like it",
-    "ask someone else",
-    "Never interupt me eating beans and watching Cars 2 ever a-fucking-gain",
-    "nah man I don't really feels like it right now lmfao",
-    "I mean I could if I wanted to, but why the fuck would I LMAO",
-    "don't ever ask me that ever again",
-    "sorry I don't speak gay retard",
-    "I'll bet you'd really like me to do that, now wouldn't you?",
-    "The fact that you think that I'd do that for you is really fucking dumb lol",
-    "shut up nerd",
-    "fuck you idiot, always askin me to do shit, do it yourself you worthless fucking idiot",
-    "Ok retard, I can't just do everything around here.",
-]
-commandError = [ #If someone calls a command that doesn't exist
-    "Are you sure you typed that correctly retard?",
-    "I don't know what the fuck you want from me.",
-    "Take your time, try again.",
-    "I don't understand, try being slightly less retarted.",
-]
-noRights = [ #If someone doesn't have server permission to use a command
-    "Sorry, but you don't have any rights.",
-    "Nah lol.",
-    "You are not tall enough to ride this ride.",
-    "You are not authorized retard",
-    "I would, but I won't",
-    "Bitch, shutcho ass up",
-    "Hey chief, I'm not capable of doing that for you",
-    "Nah nigga you gay HAHA",
-    "Nah nigga you ain't cool enough for that shit",
-    "You the type of nigga to call other niggas king, get the fuck outta here lmfao",
-    "Maybe if the people on this server liked you enough, you'd be able to do that",
-    "If you ever ask that again I will have sex with your dad",
-]
-badArg = [ #If a command doesn't get the required or correct argument
-    "Do not waste my time",
-    "Come on now retard, lets be serious.",
-    "What kind of surface were you dropped head-first onto as a child?",
-]
-clear1k = [ #Henry won't clear more than 999 messages at a time
-    "Do you really fucking expect me to clear that many messages right now?",
-    "Yeah you can piss right off, I'm not clearing that many messages.",
-    "I am not emotionally capable of clearing any more than 999 messages at a time.",
-    "I am way too lazy to even think of doing that.",
-    "If you were smart you'd just ask me to clear 999 multiple times, but no.",
-    "If you think I can do that then you are just another shit idiot.",
-    "Why don't you clear all those messages yourself you fucking nerd?",
-    "No. I refuse.",
-]
-botOutrank = [ #If Henry isn't a high enough rank
-    "I'm not physically capable of doing that.",
-    "Would if I could",
-    "Tried and failed",
-    "They're too powerful",
-]
-authorOutrank = [ #If someone tries to use Henry's rank to kick someone higher than them...
-    "Sorry but it don't work like that.",
-    "Clever but no",
-    "Nice try",
-    "I want to, but I'd probably get in trouble.",
-]
-times = [
-    "now",
-    "later",
-    "in a few",
-    "2 minutes",
-    "7:32",
-    "1 month, 14 days, 4 hours, 5 minuts, and 1 second",
-    #Make a random time gernerator - multiple formats
-]
-adjectives = [
-    "gay",
-    "rarted",
-    "stickey",
-]
+import RecentGen, random, datetime
 blackList = [ #People not allowed to use Henry's commands
     "150420859683733504", # @Lunar
 ]
 whitelist = [
     "187656701380526080", # @Christ Himself
 ]
+def errorMsgGen(a):
+    rejected = [
+        "nah lol",
+        "no",
+        "maybe later",
+        "don't feel like it",
+        "ask someone else",
+        "Never interupt me eating beans and watching Cars 2 ever a-fucking-gain",
+        "nah man I don't really feels like it right now lmfao",
+        "I mean I could if I wanted to, but why the fuck would I LMAO",
+        "don't ever ask me that ever again",
+        "sorry I don't speak gay retard",
+        "I'll bet you'd really like me to do that, now wouldn't you?",
+        "The fact that you think that I'd do that for you is really fucking dumb lol",
+        "shut up nerd",
+        "fuck you idiot, always askin me to do shit, do it yourself you worthless fucking idiot",
+        "Ok retard, I can't just do everything around here.",
+    ]
+    commandError = [ #If someone calls a command that doesn't exist
+        "Are you sure you typed that correctly retard?",
+        "I don't know what the fuck you want from me.",
+        "Take your time, try again.",
+        "I don't understand, try being slightly less retarted.",
+    ]
+    noRights = [ #If someone doesn't have server permission to use a command
+        "Sorry, but you don't have any rights.",
+        "Nah lol.",
+        "You are not tall enough to ride this ride.",
+        "You are not authorized retard",
+        "I would, but I won't",
+        "Bitch, shutcho ass up",
+        "Hey chief, I'm not capable of doing that for you",
+        "Nah nigga you gay HAHA",
+        "Nah nigga you ain't cool enough for that shit",
+        "You the type of nigga to call other niggas king, get the fuck outta here lmfao",
+        "Maybe if the people on this server liked you enough, you'd be able to do that",
+        "If you ever ask that again I will have sex with your dad",
+    ]
+    badArg = [ #If a command doesn't get the required or correct argument
+        "Do not waste my time",
+        "Come on now retard, lets be serious.",
+        "What kind of surface were you dropped head-first onto as a child?",
+    ]
+    clear1k = [ #Henry won't clear more than 999 messages at a time
+        "Do you really fucking expect me to clear that many messages right now?",
+        "Yeah you can piss right off, I'm not clearing that many messages.",
+        "I am not emotionally capable of clearing any more than 999 messages at a time.",
+        "I am way too lazy to even think of doing that.",
+        "If you were smart you'd just ask me to clear 999 multiple times, but no.",
+        "If you think I can do that then you are just another shit idiot.",
+        "Why don't you clear all those messages yourself you fucking nerd?",
+        "No. I refuse.",
+    ]
+    botOutrank = [ #If Henry isn't a high enough rank
+        "I'm not physically capable of doing that.",
+        "Would if I could",
+        "Tried and failed",
+        "They're too powerful",
+    ]
+    authorOutrank = [ #If someone tries to use Henry's rank to kick someone higher than them...
+        "Sorry but it don't work like that.",
+        "Clever but no",
+        "Nice try",
+        "I want to, but I'd probably get in trouble.",
+    ]
+    if (a == 1):
+        errorMsg = rejected[random.randint(0,len(rejected)-1)]
+    elif (a == 2):
+        errorMsg = commandError[random.randint(0,len(commandError)-1)]
+    elif (a == 3):
+        errorMsg = noRights[random.randint(0,len(noRights)-1)]
+    elif (a == 4):
+        errorMsg = badArg[random.randint(0,len(badArg)-1)]
+    elif (a == 5):
+        errorMsg = clear1k[random.randint(0,len(clear1k)-1)]
+    elif (a == 6):
+        botOutrank = botOutrank[random.randint(0,len(botOutrank)-1)]
+    elif (a == 7):
+        errorMsg = authorOutrank[random.randint(0,len(authorOutrank)-1)]
+    return(errorMsg)
 def introGen(a, b): #Returns a sentence starter for use in random phrase generation
     statementIntros = [
         "I ",
@@ -372,6 +374,14 @@ def nounGen(a): #Returns a noun/object for use in random phrase generation
         RecentGen.nouns2.append(i)
         noun = nouns2[i]
     return(noun)
+def adjectiveGen():
+    adjectives = [
+        "gay",
+        "rarted",
+        "stickey",
+    ]
+    adj = adjectives[random.randint(0,len(adjectives)-1)]
+    return(adj)
 def phraseGen(): #Returns a random phrase that Henry's creators made him able to say
     phrases = [
         "Girls don't want luxury handbags and expensive clothes they want frag grenades and illegal firearms",
@@ -455,3 +465,22 @@ def phraseGen(): #Returns a random phrase that Henry's creators made him able to
     RecentGen.phrases.append(i)
     phrase = phrases[i]
     return(phrase)
+def timeGen():
+    times = [
+        "now",
+        "later",
+        "in a few",
+        "another time",
+        "not yet",
+        "tomorrow",
+        "last week",
+    ]
+    chance = random.randint(0,10)
+    if (chance > 5):
+        year = random.randint(1000, 9999)
+        month = random.randint(1, 12)
+        day = random.randint(1, 28)
+        time = datetime.datetime(year, month, day)
+    else:
+        time = times[random.randint(0, len(times)-1)]
+    return(time)
