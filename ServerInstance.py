@@ -44,6 +44,7 @@ class ServerInstance:
 
             elif "henry" in content or '<@' + self.bot.user.id + '>' in content:
                 self.conversations.add(author)
+                print(ConversationManager.conversations)
                 msg = Writer.respond(content)
                 await send(self.bot, channel, msg)
 
