@@ -3,7 +3,7 @@ from discord.ext import commands
 bot = commands.Bot(command_prefix="!Henry, ")
 @bot.event
 async def on_ready():
-    print("Henry is here to "+Lists.verbGen(1)+" "+nounGen(1))
+    print("Henry is here to "+Lists.verbGen(1)+" "+Lists.nounGen(1))
     await send()
 @bot.event
 async def on_command_error(error: Exception, ctx: commands.Context):
@@ -33,7 +33,6 @@ async def on_message(message): #Handles responding to messages
     else:
         response = None
         lMessage = message.content.lower()
-        print("conversing: "+str(conversing))
         if (conversing == False):
             if ("henry" in lMessage or '<@472243513837355009>' in lMessage):
                 msg = msgGen(lMessage, 1)
@@ -141,17 +140,17 @@ async def send():
 def msgGen(a, b):
     if (b == 1):
         if (classify(a) == 'why'):
-            msg = Lists.introGen(3, 1)+nounGen(1)+" "+Lists.verbGen(1)+" "+nounGen(1)
+            msg = Lists.introGen(3, 1)+Lists.nounGen(1)+" "+Lists.verbGen(1)+" "+Lists.nounGen(1)
         elif (classify(a) == 'how'):
-            msg = Lists.introGen(3, 2)+nounGen(1)+" "+Lists.verbGen(1)+"s "+nounGen(1)
+            msg = Lists.introGen(3, 2)+Lists.nounGen(1)+" "+Lists.verbGen(1)+"s "+Lists.nounGen(1)
         elif (classify(a) == 'who' or classify(a) == 'what'):
-            msg = nounGen(1)
+            msg = Lists.nounGen(1)
         elif (classify(a) == 'when'):
             msg = Lists.times[random.randint(0,len(Lists.times)-1)] #needs alot improvement
         else:
             chance = random.randint(0,100)
             if (chance < 75):
-                msg = phraseGen()
+                msg = Lists.phraseGen()
             else:
                 msg = retaliate()
     elif (b == 2):
@@ -182,54 +181,18 @@ def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shi
     b = random.randint(0,100)
     if (b < 50):
         verb = Lists.verbGen(1)+" "
-        noun = nounGen(1)
+        noun = Lists.nounGen(1)
     elif (68 > b > 50):
         verb = Lists.verbGen(2)+" "
-        noun = nounGen(2)
+        noun = Lists.nounGen(2)
     elif (90 > b > 68):
-        shit = phraseGen()
+        shit = Lists.phraseGen()
         return(shit)       
     else:
         verb = Lists.verbGen(3) #ends without noun
         noun = ""
     shit = intro+verb+noun+end
     return(shit)
-def nounGen(a): #Returns a noun/object for use in random phrase generation
-    if (len(RecentGen.nouns1) >= len(Lists.nouns1) * 0.85):
-        del RecentGen.nouns1[0]
-    elif (len(RecentGen.nouns2) >= len(Lists.nouns2) * 0.85):
-        del RecentGen.nouns2[0]
-    if (a == 1):
-        i = random.randint(0,len(Lists.nouns1)-1)
-        while (i in RecentGen.nouns1):
-            if (i < len(Lists.nouns1)-1):
-                i += 1
-            else:
-                i = 0
-        RecentGen.nouns1.append(i)
-        noun = Lists.nouns1[i]
-    elif (a == 2):
-        i = random.randint(0,len(Lists.nouns2)-1)
-        while (i in RecentGen.nouns2):
-            if (i < len(Lists.nouns2)-1):
-                i += 1
-            else:
-                i = 0
-        RecentGen.nouns2.append(i)
-        noun = Lists.nouns2[i]
-    return(noun)
-def phraseGen(): #Returns a random phrase that Henry's creators made him able to say
-    if (len(RecentGen.phrases) >= len(Lists.phrases) * 0.85):
-        del RecentGen.phrases[0]
-    i = random.randint(0,len(Lists.phrases)-1)
-    while (i in RecentGen.phrases):
-            if (i < len(Lists.phrases)-1):
-                i += 1
-            else:
-                i = 0
-    RecentGen.phrases.append(i)
-    phrase = Lists.phrases[i]
-    return(phrase)
 def retaliate():
     #random
     #3 options based on random
