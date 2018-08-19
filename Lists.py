@@ -134,6 +134,13 @@ def introGen(a, b): #Returns a sentence starter for use in random phrase generat
     answerIntros2 = [
         "Well basically ",
     ]
+    retalIntros = [
+        "I will ",
+        "I could",
+        "I might have to ",
+        "Don't make me ",
+        "I have the urge to ",
+    ]
     if (len(RecentGen.intros1) >= len(statementIntros) * 0.85):
         del RecentGen.intros1[0]
     elif(len(RecentGen.intros2) >= len(questionIntros) * 0.85):
@@ -174,6 +181,15 @@ def introGen(a, b): #Returns a sentence starter for use in random phrase generat
                     i = 0
             intro = answerIntros2[i]
         RecentGen.intros3.append(i)  
+    elif (a == 4):
+        i = random.randint(0, len(retalIntros)-1)
+        while (i in RecentGen.intros4):
+            if (i < len(retalIntros)-1):
+                i += 1
+            else:
+                i = 0
+        RecentGen.intros4.append(i)
+        intro = retalIntros[i]
     return(intro)
 def verbGen(a): #Returns a verb for use in random phrase generation
     verbs1 = [
@@ -351,6 +367,20 @@ def nounGen(a): #Returns a noun/object for use in random phrase generation
         "Judaism",
         "Islam",
     ]
+    retalNouns = [
+        "toes",
+        "pee pee",
+        "teeth",
+        "rib-cage",
+        "forehead",
+        "limbs",
+        "feet",
+        "tiddy",
+        "shoulders",
+        "posetions",
+        "family",
+        "dog",
+    ]
     if (len(RecentGen.nouns1) >= len(nouns1) * 0.85):
         del RecentGen.nouns1[0]
     elif (len(RecentGen.nouns2) >= len(nouns2) * 0.85):
@@ -373,6 +403,15 @@ def nounGen(a): #Returns a noun/object for use in random phrase generation
                 i = 0
         RecentGen.nouns2.append(i)
         noun = nouns2[i]
+    elif (a == 3):
+        i = random.randint(0,len(retalNouns)-1)
+        while (i in RecentGen.nouns3):
+            if (i < len(retalNouns)-1):
+                i += 1
+            else:
+                i = 0
+        RecentGen.nouns3.append(i)
+        noun = retalNouns[i]
     return(noun)
 def adjectiveGen():
     adjectives = [
@@ -479,7 +518,7 @@ def timeGen():
     if (chance > 5):
         year = random.randint(1000, 9999)
         month = random.randint(1, 12)
-        day = random.randint(1, 28)
+        day = random.randint(1, 28) #need logic for limit of days for each month because the Gregorian calender is mega gay
         time = datetime.datetime(year, month, day)
     else:
         time = times[random.randint(0, len(times)-1)]

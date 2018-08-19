@@ -148,8 +148,8 @@ def msgGen(a, b):
         elif (classify(a) == 'when'):
             msg = Lists.timeGen()
         else:
-            chance = random.randint(0,100)
-            if (chance < 75):
+            chance = random.randint(0,1)
+            if (chance == 0):
                 msg = Lists.phraseGen()
             else:
                 msg = retaliate()
@@ -194,8 +194,10 @@ def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shi
     shit = intro+verb+noun+end
     return(shit)
 def retaliate():
-    #random
-    #3 options based on random
-    #ex: 1 - "You are + adjective", 2 - "I will + verb + your + noun", 3 - "fuck you, die, etc"
-    return("Work in progress")
+    chance = random.randint(0,100)
+    if (chance < 45):
+        retaliation = "You are "+Lists.adjectiveGen()
+    elif (45 < chance < 85):
+        retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.nounGen(3)
+    return(retaliation)
 bot.run(os.getenv('TOKEN'))
