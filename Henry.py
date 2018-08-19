@@ -3,10 +3,8 @@ from discord.ext import commands
 bot = commands.Bot(command_prefix="!Henry, ")
 @bot.event
 async def on_ready():
-    seconds = 3601
-    while (not bot.is_closed):
-        await send()
-        await asyncio.sleep(seconds)
+    print("Henry is here to "+verbGen(1)+" "+nounGen(1))
+    await send()
 @bot.event
 async def on_command_error(error: Exception, ctx: commands.Context):
     ignored = (commands.CommandNotFound, commands.UserInputError)
@@ -50,7 +48,7 @@ async def on_message(message): #Handles responding to messages
                 await asyncio.sleep(0.8)
                 await bot.send_message(message.channel, msg)
                 response = await bot.wait_for_message(author=message.author, timeout = 8.0)   
-                conversing = False
+                # conversing = False #?
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
