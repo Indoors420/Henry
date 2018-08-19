@@ -20,7 +20,6 @@ class ServerInstance:
     def __init__(self, bot, server_id: str, channel_id: str):
         self.bot = bot
         self.server = bot.get_server(server_id)
-        self.channel = bot.get_channel(channel_id)
         self.conversations = ConversationManager()
 
         self.commands["clear"] = self.command_clear
