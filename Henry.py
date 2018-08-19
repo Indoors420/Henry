@@ -1,4 +1,4 @@
-import discord, random, asyncio, datetime, os, Lists, RecentGen
+import discord, random, asyncio, datetime, os, Lists, RecentGen, HenryNet.Generate
 from discord.ext import commands
 bot = commands.Bot(command_prefix="!Henry, ")
 @bot.event
@@ -152,7 +152,7 @@ def msgGen(a, b):
             if (chance < 75):
                 msg = Lists.phraseGen()
             else:
-                msg = retaliate()
+                msg = retaliate(a, rand=True)
     elif (b == 2):
         msg = Lists.errorMsgGen(1)
     return(msg)
@@ -193,9 +193,9 @@ def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shi
         noun = ""
     shit = intro+verb+noun+end
     return(shit)
-def retaliate():
-    #random
-    #3 options based on random
-    #ex: 1 - "You are + adjective", 2 - "I will + verb + your + noun", 3 - "fuck you, die, etc"
-    return("Work in progress")
+def retaliate(msg="", rand=False):  # generates a random retaliation using AI
+    if rand:
+        import string
+        msg += ''.join([random.choice(string.ascii_letters) for i in range(20)])
+    return "I" + HenryNet.Generate.retaliate(msg, 0.8)
 bot.run(os.getenv('TOKEN'))
