@@ -143,8 +143,10 @@ def introGen(a, b): #Returns a sentence starter for use in random phrase generat
     ]
     if (len(RecentGen.intros1) >= len(statementIntros) * 0.85):
         del RecentGen.intros1[0]
-    elif(len(RecentGen.intros2) >= len(questionIntros) * 0.85):
+    elif (len(RecentGen.intros2) >= len(questionIntros) * 0.85):
         del RecentGen.intros2[0]
+    elif (len(RecentGen.intros4) >= len(retalIntros) * 0.85):
+        del RecentGen.intros4[0]
     if (a == 1):
         i = random.randint(0, len(statementIntros)-1)
         while (i in RecentGen.intros1):
@@ -417,7 +419,16 @@ def adjectiveGen():
         "rarted",
         "stickey",
     ]
-    adj = adjectives[random.randint(0,len(adjectives)-1)]
+    if (len(RecentGen.adjectives) >= len(adjectives) * 0.8):
+        del RecentGen.adjectives[0]
+    i = random.randint(0, len(adjectives)-1)
+    while (i in RecentGen.adjectives):
+        if (i < len(adjectives)-1):
+            i += 1
+        else:
+            i = 0
+    RecentGen.adjectives.append(i)
+    adj = adjectives[i]
     return(adj)
 def phraseGen(a): #Returns a random phrase that Henry's creators made him able to say
     phrases = [
