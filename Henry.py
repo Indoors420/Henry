@@ -1,211 +1,61 @@
-import discord, random, asyncio, datetime, os, Lists, RecentGen
+import discord, asyncio, typing, os, json
 from discord.ext import commands
-from ConversationManager import ConversationManager
 
-bot = commands.Bot(command_prefix="!Henry, ")
-conversations = ConversationManager(8.0)
+from Henry import Henry
+
+bot: commands.Bot = commands.Bot(command_prefix="!Henry, ")
+
+henrys = {}
+
+
+def is_henry_server(server: discord.Server) -> bool:
+    return server.id in henrys
+
+
+def get_henry(server: discord.Server) -> Henry:
+    return henrys[server.id]
+
+
+def add_server(server_id, server_general_channel):
+    new_henry = Henry(bot, server_id, server_general_channel)
+    henrys[server_id] = new_henry
 
 
 @bot.event
 async def on_ready():
-    print("Henry is here to "+Lists.verbGen(1)+" "+Lists.nounGen(1))
-    await send()
+    print("Henry is ready")
+
+
 @bot.event
 async def on_command_error(error: Exception, ctx: commands.Context):
-    ignored = (commands.CommandNotFound, commands.UserInputError)
-    error = getattr(error, 'original', error)
-    if isinstance(error, ignored):
-        await bot.send_typing(ctx.message.channel)
-        await asyncio.sleep(0.8)
-        msg = Lists.errorMsgGen(2)
-        await bot.send_message(ctx.message.channel, msg)
-        return
-    else:
-        print("ERROR!")
+    print("Henry command error")
+
+
 @bot.event
-async def on_message(message): #Handles responding to messages
-    if (message.author == bot.user):
-        return
-    global conversing
-    if ("!Henry, help" in message.content):
-        msg = msgGen(message.content, 2)
-        await bot.send_typing(message.channel)
-        await asyncio.sleep(0.8)
-        await bot.send_message(message.channel, msg)
-    elif (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
-        await bot.process_commands(message)
-    else:
-        author = message.author
-        response = None
-        lMessage = message.content.lower()
-
-        if conversations.conversing_with(author):
-            conversations.update(author)
-            msg = msgGen(lMessage, 1)
-            await bot.send_typing(message.channel)
-            await asyncio.sleep(0.8)
-            await bot.send_message(message.channel, msg)
-
-        elif ("henry" in lMessage or '<@476854637371195433>' in lMessage):
-            conversations.add(author)
-            msg = msgGen(lMessage, 1)
-            await bot.send_typing(message.channel)
-            await asyncio.sleep(0.8)
-            await bot.send_message(message.channel, msg)
+async def on_message(message: discord.Message):
+    if is_henry_server(message.server):
+        await get_henry(message.server).on_message(message)
 
 
-@bot.command(pass_context = True)
-async def clear(ctx, input):
-    if (not ctx.message.author.server_permissions.manage_messages):
-        msg = Lists.errorMsgGen(3)
-        await bot.send_typing(ctx.message.channel)
-        await asyncio.sleep(0.8)
-        await bot.send_message(ctx.message.channel, msg)
-        return
-    elif (not ctx.message.channel.server.me.server_permissions.manage_messages):
-        msg = Lists.errorMsgGen(6)
-        await bot.send_typing(ctx.message.channel)
-        await asyncio.sleep(0.8)
-        await bot.send_message(ctx.message.channel, msg)
-        return
-    else:
-        if (not input.isdigit()):
-            msg = Lists.errorMsgGen(4)
-            await bot.send_typing(ctx.message.channel)
-            await asyncio.sleep(0.8)
-            await bot.send_message(ctx.message.channel, msg)
-            return          
-        input = int(input)
-        if (input < 2):
-            msg = Lists.errorMsgGen(4)
-            await bot.send_typing(ctx.message.channel)
-            await asyncio.sleep(0.8)
-            await bot.send_message(ctx.message.channel, msg)
-            return
-        elif (input <= 100): #Command can clear from 2 to 100 messages by default
-            amount = input
-            mgs = [] #Empty list to put all the messages in the log
-            async for i in bot.logs_from(ctx.message.channel, limit = amount):
-                mgs.append(i)
-            await bot.delete_messages(mgs)
-        elif(1000 > input > 100): #All the math below enables the bot to delete sets of 100 messages, + the remainder that isn't divisable by 100
-            amount = 100
-            loops = str(input / 100)
-            #removing decimal points
-            loops=int(loops[:loops.index('.')])
-            #loops = remaining messages / less than 100
-            remainder = input % 100
-            for _ in range(0, loops):
-                mgs = [] #Empty list to put all the messages in the log
-                async for i in bot.logs_from(ctx.message.channel, limit = amount):
-                    mgs.append(i)
-                if (len(mgs) > 0): #Don't try to delete messages that don't exist
-                    await bot.delete_messages(mgs)
-                    await asyncio.sleep(0.8)
-            remain = [] #Empty list to put all the messages in the log
-            async for r in bot.logs_from(ctx.message.channel, limit = remainder):
-                remain.append(r)
-            await asyncio.sleep(0.8)
-            if (len(remain) > 0): #Don't try to delete messages that don't exist
-                await bot.delete_messages(remain)
-            else:
-                return
-        elif(input >= 1000):
-            msg = Lists.errorMsgGen(5)
-            await bot.send_typing(ctx.message.channel)
-            await asyncio.sleep(0.8)
-            await bot.send_message(ctx.message.channel, msg)
-@bot.command(pass_context = True)
-async def kick(ctx, user: discord.Member):
-    if (not ctx.message.author.server_permissions.kick_members or user.id == "187656701380526080"):
-        msg = Lists.errorMsgGen(3)
-        await bot.send_typing(ctx.message.channel)
-        await asyncio.sleep(0.8)
-        await bot.send_message(ctx.message.channel, msg)
-    elif (ctx.message.server.me.top_role <= user.top_role):
-        msg = Lists.errorMsgGen(6)
-        await bot.send_typing(ctx.message.channel)
-        await asyncio.sleep(0.8)
-        await bot.send_message(ctx.message.channel, msg)
-    elif (ctx.message.author.top_role <= user.top_role):
-        msg = Lists.errorMsgGen(7)
-        await bot.send_typing(ctx.message.channel)
-        await asyncio.sleep(0.8)
-        await bot.send_message(ctx.message.channel, msg)
-    else:
-        await bot.say('Okay {}, time to go.'.format(user.mention))
-        await asyncio.sleep(3)
-        await bot.kick(user)
-async def send():
-    HENRYS_TESTING_SERVER = bot.get_server(os.getenv('HENRYS_TESTING_SERVER'))
-    msg = shitpost()
-    await bot.send_typing(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')))
-    await asyncio.sleep(0.8)
-    await bot.send_message(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')), msg)
-    print('''Henry says: "'''+msg+'''"''')
-def msgGen(a, b):
-    if (b == 1):
-        if (classify(a) == 'why'):
-            msg = Lists.introGen(3, 1)+Lists.nounGen(1)+" "+Lists.verbGen(1)+" "+Lists.nounGen(1)
-        elif (classify(a) == 'how'):
-            msg = Lists.introGen(3, 2)+Lists.nounGen(1)+" "+Lists.verbGen(1)+"s "+Lists.nounGen(1)
-        elif (classify(a) == 'who' or classify(a) == 'what'):
-            msg = Lists.nounGen(1)
-        elif (classify(a) == 'when'):
-            msg = Lists.timeGen()
-        else:
-            chance = random.randint(0,1)
-            if (chance == 0):
-                msg = Lists.phraseGen(1)
-            else:
-                msg = retaliate()
-    elif (b == 2):
-        msg = Lists.errorMsgGen(1)
-    return(msg)
-def classify(a):
-    if ("why" in a):
-        type = 'why'
-    elif ("how" in a):
-        type = 'how'
-    elif ("who" in a):
-        type = 'who'
-    elif ("what" in a or "which" in a):
-        type = 'what'
-    elif ("when" in a ):
-        type = 'when'
-    else:
-        type = None
-    return(type)
-def shitpost(): #Uses returned intros, verbs, and nouns to create a coherent shitpost
-    a = random.randint(0,10)
-    if (a < 5):
-        intro = Lists.introGen(1, None)
-        end = "."
-    else:
-        intro = Lists.introGen(2, None)
-        end = "?"
-    b = random.randint(0,100)
-    if (b < 50):
-        verb = Lists.verbGen(1)+" "
-        noun = Lists.nounGen(1)
-    elif (68 > b > 50):
-        verb = Lists.verbGen(2)+" "
-        noun = Lists.nounGen(2)
-    elif (90 > b > 68):
-        shit = Lists.phraseGen(1)
-        return(shit)       
-    else:
-        verb = Lists.verbGen(3) #ends without noun
-        noun = ""
-    shit = intro+verb+noun+end
-    return(shit)
-def retaliate():
-    chance = random.randint(0,100)
-    if (chance < 45):
-        retaliation = "You are "+Lists.adjectiveGen()
-    elif (45 <= chance <= 85):
-        retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.nounGen(3)
-    elif (chance > 85):
-        retaliation = Lists.phraseGen(2)
-    return(retaliation)
-bot.run(os.getenv('TOKEN'))
+@bot.command(pass_context=True)
+async def clear(ctx: commands.Context, argument):
+    if is_henry_server(ctx.message.server):
+        await get_henry(ctx.message.server).command_clear(ctx, argument)
+
+
+@bot.command(pass_context=True)
+async def kick(ctx: commands.Context, user: discord.Member):
+    if is_henry_server(ctx.message.server):
+        await get_henry(ctx.message.server).command_kick(ctx, user)
+
+# If this is the main file,
+# load servers and token from env variables
+# SERVERS env should be a 2d json array
+# [[server_id, channel_id], [server_id, channel_id], etc]
+if __name__ == "__main__":
+    servers = json.loads(os.getenv("SERVERS"))
+
+    for server in servers:
+        add_server(server[0], server[1])
+
+    bot.run(os.getenv("TOKEN"))
