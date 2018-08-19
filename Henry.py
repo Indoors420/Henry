@@ -41,6 +41,7 @@ async def on_message(message): #Handles responding to messages
                 await bot.send_message(message.channel, msg)
                 response = await bot.wait_for_message(author=message.author, timeout = 8.0)
             while (response != None): #Currently brakes when user says henry as first response in convo
+                lMessage = response.content.lower()
                 msg = msgGen(lMessage, 1)
                 await bot.send_typing(message.channel)
                 await asyncio.sleep(0.8)
