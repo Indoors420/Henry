@@ -74,6 +74,7 @@ class ServerInstance:
                 to_delete = [msg async for msg in self.bot.logs_from(channel, limit=arg)]
 
                 amount = len(to_delete)
+                print(amount)
                 i = 0
                 while amount > 0:
                     lower = i
