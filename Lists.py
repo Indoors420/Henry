@@ -207,7 +207,7 @@ nouns1 = [
     "Harvard",
     "the president",
     "an orphanage",
-    "battery acid",
+    "some battery acid",
     "some farm animals",
     "some shit",
     "these cheez-its™",
