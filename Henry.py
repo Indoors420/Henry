@@ -16,8 +16,8 @@ def get_henry(server: discord.Server) -> ServerInstance:
     return instances[server.id]
 
 
-def add_server(server_id, server_general_channel):
-    new_henry = ServerInstance(bot, server_id, server_general_channel)
+def add_server(server_id):
+    new_henry = ServerInstance(bot, server_id)
     instances[server_id] = new_henry
 
 
