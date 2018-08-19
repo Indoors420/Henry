@@ -137,7 +137,7 @@ async def send():
     await bot.send_typing(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')))
     await asyncio.sleep(0.8)
     await bot.send_message(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')), msg)
-    print('''"Test"''')
+    print('''Henry says "'''+msg+'''"''')
 def msgGen(a, b):
     if (b == 1):
         if (classify(a) == 'why'):
