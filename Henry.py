@@ -51,6 +51,12 @@ async def kick(ctx: commands.Context, user: discord.Member):
         await get_henry(ctx.message.server).command_kick(ctx, user)
 
 
+@bot.command(pass_context=True)
+async def ban(ctx: commands.Context, user: discord.Member):
+    if is_henry_server(ctx.message.server):
+        await get_henry(ctx.message.server).command_ban(ctx, user)
+
+
 def init_all_servers():
     for server in bot.servers:
         add_server(server.id)

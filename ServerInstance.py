@@ -95,6 +95,22 @@ class ServerInstance:
             await asyncio.sleep(3)
             await self.bot.kick(user)
             
+    async def command_ban(self, ctx, user: discord.Member):
+        message = ctx.message
+        author = message.author
+        channel: discord.Channel = message.channel
+        server = channel.server
+
+        if not author.server_permissions.ban_members or user.id == "187656701380526080":
+            await send(self.bot, channel, Lists.errorMsgGen(3))
+        elif server.me.top_role <= user.top_role:
+            await send(self.bot, channel, Lists.errorMsgGen(6))
+        elif author.top_role <= user.top_role:
+            await send(self.bot, channel, Lists.errorMsgGen(7))
+        else:
+            await send(self.bot, channel, "Bye {}, don't come back.".format(user.mention))
+            await asyncio.sleep(2.5)
+            await self.bot.ban(user)
     
     def __str__(self) -> str:
         return self.server.id
