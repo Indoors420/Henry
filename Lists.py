@@ -531,7 +531,7 @@ def timeGen():
     ]
     chance = random.randint(0,10)
     if (chance > 5):
-        year = random.randint(1000, 9999)
+        year = random.randint(2018, 2040)
         month = random.randint(1, 12)
         day = random.randint(1, 28) #need logic for limit of days for each month because the Gregorian calender is mega gay
         time = datetime.datetime(year, month, day)

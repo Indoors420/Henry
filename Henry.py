@@ -5,7 +5,6 @@ from ConversationManager import ConversationManager
 bot = commands.Bot(command_prefix="!Henry, ")
 conversations = ConversationManager(8.0)
 
-
 @bot.event
 async def on_ready():
     print("Henry is here to "+Lists.verbGen(1)+" "+Lists.nounGen(1))
@@ -26,7 +25,6 @@ async def on_command_error(error: Exception, ctx: commands.Context):
 async def on_message(message): #Handles responding to messages
     if (message.author == bot.user):
         return
-    global conversing
     if ("!Henry, help" in message.content):
         msg = msgGen(message.content, 2)
         await bot.send_typing(message.channel)
@@ -36,7 +34,6 @@ async def on_message(message): #Handles responding to messages
         await bot.process_commands(message)
     else:
         author = message.author
-        response = None
         lMessage = message.content.lower()
 
         if conversations.conversing_with(author):
@@ -52,8 +49,6 @@ async def on_message(message): #Handles responding to messages
             await bot.send_typing(message.channel)
             await asyncio.sleep(0.8)
             await bot.send_message(message.channel, msg)
-
-
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (not ctx.message.author.server_permissions.manage_messages):
