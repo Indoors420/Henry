@@ -23,7 +23,6 @@ async def on_message(message): #Handles responding to messages
     if (message.author == bot.user):
         return
     global conversing
-    print('conversing: '+str(conversing))
     if ("!Henry, help" in message.content):
         msg = msgGen(message.content, 2)
         await bot.send_typing(message.channel)
@@ -34,6 +33,7 @@ async def on_message(message): #Handles responding to messages
     else:
         response = None
         lMessage = message.content.lower()
+        print("conversing: "+conversing)
         if (conversing == False):
             if ("henry" in lMessage or '<@472243513837355009>' in lMessage):
                 msg = msgGen(lMessage, 1)
@@ -48,7 +48,7 @@ async def on_message(message): #Handles responding to messages
                 await asyncio.sleep(0.8)
                 await bot.send_message(message.channel, msg)
                 response = await bot.wait_for_message(author=message.author, timeout = 8.0)   
-                conversing = False #?
+                conversing = False
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
