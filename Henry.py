@@ -53,7 +53,7 @@ async def kick(ctx: commands.Context, user: discord.Member):
 
 def init_all_servers():
     for server in bot.servers:
-        add_server(server.id, server.default_channel.id)
+        add_server(server.id)
 
 
 def start(token):
