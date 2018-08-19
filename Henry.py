@@ -28,8 +28,6 @@ async def on_message(message): #Handles responding to messages
         await bot.send_typing(message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(message.channel, msg)
-        response = await bot.wait_for_message(author=message.author, timeout = 5.0)
-        print(response)
     elif (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
     else:
@@ -39,6 +37,8 @@ async def on_message(message): #Handles responding to messages
             await bot.send_typing(message.channel)
             await asyncio.sleep(0.8)
             await bot.send_message(message.channel, msg)
+            response = await bot.wait_for_message(author=message.author, timeout = 5.0)
+            print(response)
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
