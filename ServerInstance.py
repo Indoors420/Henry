@@ -39,14 +39,20 @@ class ServerInstance:
         else:
             if self.conversations.conversing_with(author):
                 self.conversations.update(author)
-                msg = Writer.respond(content)
+                if len(ConversationManager.conversations) > 1:
+                    msg = Writer.respond(content)+" {}".format(author.mention)
+                else:
+                    msg = Writer.respond(content)
                 await send(self.bot, channel, msg)
 
             elif "henry" in content or '<@' + self.bot.user.id + '>' in content:
                 self.conversations.add(author)
-                print(ConversationManager.conversations)
-                msg = Writer.respond(content)
+                if len(ConversationManager.conversations) > 1:
+                    msg = Writer.respond(content)+" {}".format(author.mention)
+                else:
+                    msg = Writer.respond(content)
                 await send(self.bot, channel, msg)
+                
 
     async def command_clear(self, ctx, arg: str):
         message = ctx.message
