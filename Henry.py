@@ -38,7 +38,7 @@ async def on_message(message): #Handles responding to messages
             await asyncio.sleep(0.8)
             await bot.send_message(message.channel, msg)
             response = await bot.wait_for_message(author=message.author, timeout = 5.0)
-            print(response)
+            print(response.content)
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
