@@ -21,6 +21,7 @@ conversing = False
 @bot.event
 async def on_message(message): #Handles responding to messages
     global conversing
+    print('conversing: '+str(conversing))
     if (message.author == bot.user):
         return
     if ("!Henry, help" in message.content):
@@ -48,7 +49,7 @@ async def on_message(message): #Handles responding to messages
                 await asyncio.sleep(0.8)
                 await bot.send_message(message.channel, msg)
                 response = await bot.wait_for_message(author=message.author, timeout = 8.0)   
-                # conversing = False #?
+                conversing = False #?
 @bot.command(pass_context = True)
 async def clear(ctx, input):
     if (ctx.message.author.server_permissions.manage_messages == False):
@@ -137,7 +138,7 @@ async def send():
     await bot.send_typing(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')))
     await asyncio.sleep(0.8)
     await bot.send_message(HENRYS_TESTING_SERVER.get_channel(os.getenv('HENRYS_TESTING_SERVER_GENERAL')), msg)
-    print('''Henry says "'''+msg+'''"''')
+    print('''Henry says: "'''+msg+'''"''')
 def msgGen(a, b):
     if (b == 1):
         if (classify(a) == 'why'):
