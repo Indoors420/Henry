@@ -33,7 +33,7 @@ async def on_message(message): #Handles responding to messages
     else:
         response = None
         lMessage = message.content.lower()
-        print("conversing: "+conversing)
+        print("conversing: "+str(conversing))
         if (conversing == False):
             if ("henry" in lMessage or '<@472243513837355009>' in lMessage):
                 msg = msgGen(lMessage, 1)
