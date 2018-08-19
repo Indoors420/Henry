@@ -143,8 +143,10 @@ def introGen(a, b): #Returns a sentence starter for use in random phrase generat
     ]
     if (len(RecentGen.intros1) >= len(statementIntros) * 0.85):
         del RecentGen.intros1[0]
-    elif(len(RecentGen.intros2) >= len(questionIntros) * 0.85):
+    elif (len(RecentGen.intros2) >= len(questionIntros) * 0.85):
         del RecentGen.intros2[0]
+    elif (len(RecentGen.intros4) >= len(retalIntros) * 0.85):
+        del RecentGen.intros4[0]
     if (a == 1):
         i = random.randint(0, len(statementIntros)-1)
         while (i in RecentGen.intros1):
@@ -212,7 +214,6 @@ def verbGen(a): #Returns a verb for use in random phrase generation
         'deep fry', 
         'obliterate', 
         'systematically oppress', 
-        'fetch', 
         'flood', 
         'rob', 
         'compress', 
@@ -235,8 +236,7 @@ def verbGen(a): #Returns a verb for use in random phrase generation
         'bully', 
         'build', 
         'avoid', 
-        'crawl into',
-        'start', 
+        'crawl into', 
         'vaporize', 
         'criticize', 
         'beat', 
@@ -419,10 +419,20 @@ def adjectiveGen():
         "rarted",
         "stickey",
     ]
-    adj = adjectives[random.randint(0,len(adjectives)-1)]
+    if (len(RecentGen.adjectives) >= len(adjectives) * 0.8):
+        del RecentGen.adjectives[0]
+    i = random.randint(0, len(adjectives)-1)
+    while (i in RecentGen.adjectives):
+        if (i < len(adjectives)-1):
+            i += 1
+        else:
+            i = 0
+    RecentGen.adjectives.append(i)
+    adj = adjectives[i]
     return(adj)
 def phraseGen(a): #Returns a random phrase that Henry's creators made him able to say
     phrases = [
+        "obanacare you bitch, lol",
         "Girls don't want luxury handbags and expensive clothes they want frag grenades and illegal firearms",
         "Girls think it's sweet when u throw a fucking flash bang grenade thru their window in the morning to wake them up for work",
         "White people be like 'oh yea ur cruisin for a bruisin bud.'",
@@ -497,6 +507,10 @@ def phraseGen(a): #Returns a random phrase that Henry's creators made him able t
         "die",
         "fuck you",
         "I will tell mom",
+        "coward",
+        "bitch",
+        "okay retard",
+        "shut the fuck",
     ]
     if (len(RecentGen.phrases) >= len(phrases) * 0.85):
         del RecentGen.phrases[0]
@@ -531,10 +545,10 @@ def timeGen():
     ]
     chance = random.randint(0,10)
     if (chance > 5):
-        year = random.randint(1000, 9999)
+        year = random.randint(2018, 2040)
         month = random.randint(1, 12)
         day = random.randint(1, 28) #need logic for limit of days for each month because the Gregorian calender is mega gay
-        time = datetime.datetime(year, month, day)
+        time = datetime.datetime(year, month, day).strftime('%d %B, %Y')
     else:
         time = times[random.randint(0, len(times)-1)]
     return(time)
