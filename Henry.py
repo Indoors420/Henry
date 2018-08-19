@@ -31,14 +31,15 @@ async def on_message(message): #Handles responding to messages
     elif (message.content.startswith("!Henry, ") and message.author.id not in Lists.blackList):
         await bot.process_commands(message)
     else:
+        response = None
         lMessage = message.content.lower()
         if ("henry" in lMessage or '<@472243513837355009>' in lMessage):
             msg = msgGen(lMessage, 1)
             await bot.send_typing(message.channel)
             await asyncio.sleep(0.8)
             await bot.send_message(message.channel, msg)
-            pass
-        response = await bot.wait_for_message(author=message.author, timeout = 8.0)
+            response = await bot.wait_for_message(author=message.author, timeout = 8.0)
+
         while (response != None):
             msg = msgGen(lMessage, 1)
             await bot.send_typing(message.channel)
