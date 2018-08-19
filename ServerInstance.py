@@ -21,7 +21,6 @@ class ServerInstance:
         self.bot = bot
         self.server = bot.get_server(server_id)
         self.conversations = ConversationManager()
-        #self.channel = bot.get_channel(channel_id)
 
         self.commands["clear"] = self.command_clear
         self.commands["kick"] = self.command_kick
