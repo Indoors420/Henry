@@ -432,6 +432,7 @@ def adjectiveGen():
     return(adj)
 def phraseGen(a): #Returns a random phrase that Henry's creators made him able to say
     phrases = [
+        "obanacare you bitch, lol",
         "Girls don't want luxury handbags and expensive clothes they want frag grenades and illegal firearms",
         "Girls think it's sweet when u throw a fucking flash bang grenade thru their window in the morning to wake them up for work",
         "White people be like 'oh yea ur cruisin for a bruisin bud.'",
@@ -506,6 +507,10 @@ def phraseGen(a): #Returns a random phrase that Henry's creators made him able t
         "die",
         "fuck you",
         "I will tell mom",
+        "coward",
+        "bitch",
+        "okay retard",
+        "shut the fuck",
     ]
     if (len(RecentGen.phrases) >= len(phrases) * 0.85):
         del RecentGen.phrases[0]
