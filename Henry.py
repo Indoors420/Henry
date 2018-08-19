@@ -33,7 +33,7 @@ async def on_message(message): #Handles responding to messages
     else:
         response = None
         lMessage = message.content.lower()
-        if (conversing == False):
+        if (not conversing):
             if ("henry" in lMessage or '<@476854637371195433>' in lMessage):
                 msg = msgGen(lMessage, 1)
                 await bot.send_typing(message.channel)
@@ -50,13 +50,13 @@ async def on_message(message): #Handles responding to messages
                 conversing = False
 @bot.command(pass_context = True)
 async def clear(ctx, input):
-    if (ctx.message.author.server_permissions.manage_messages == False):
+    if (not ctx.message.author.server_permissions.manage_messages):
         msg = Lists.errorMsgGen(3)
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
         await bot.send_message(ctx.message.channel, msg)
         return
-    elif (ctx.message.channel.server.me.server_permissions.manage_messages == False):
+    elif (not ctx.message.channel.server.me.server_permissions.manage_messages):
         msg = Lists.errorMsgGen(6)
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
@@ -111,7 +111,7 @@ async def clear(ctx, input):
             await bot.send_message(ctx.message.channel, msg)
 @bot.command(pass_context = True)
 async def kick(ctx, user: discord.Member):
-    if (ctx.message.author.server_permissions.kick_members == False or user.id == "187656701380526080"):
+    if (not ctx.message.author.server_permissions.kick_members or user.id == "187656701380526080"):
         msg = Lists.errorMsgGen(3)
         await bot.send_typing(ctx.message.channel)
         await asyncio.sleep(0.8)
