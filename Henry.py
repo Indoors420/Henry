@@ -45,7 +45,7 @@ async def on_message(message): #Handles responding to messages
             while (response != None):
                 print('response: '+response.content)
                 conversing = True
-                print('conversing: '+str(conversing))
+                print('*Test* conversing: '+str(conversing))
                 msg = msgGen(lMessage, 1)
                 await bot.send_typing(message.channel)
                 await asyncio.sleep(0.8)
