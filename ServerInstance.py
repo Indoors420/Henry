@@ -17,7 +17,7 @@ class ServerInstance:
     commands = {}
     conversations: ConversationManager = None
 
-    def __init__(self, bot, server_id: str, channel_id: str):
+    def __init__(self, bot, server_id: str):
         self.bot = bot
         self.server = bot.get_server(server_id)
         self.conversations = ConversationManager()
