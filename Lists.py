@@ -440,7 +440,7 @@ def adjectiveGen(a):
         "bitter ",
         "lil ",
         "whack ",
-        "insane",
+        "insane ",
     ]
     positive = [
         "cool ",

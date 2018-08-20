@@ -66,9 +66,25 @@ def shitpost():  # Uses returned intros, verbs, and nouns to create a coherent s
 def retaliate():
     chance = random.randint(0,100)
     if chance < 45:
-        retaliation = "You are "+Lists.adjectiveGen(1)+"and "+Lists.adjectiveGen(1)
-    elif 45 <= chance <= 85:
-        retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.adjectiveGen(1)+"fucking "+Lists.nounGen(3)
-    elif chance > 85:
+        chance = random.randint(0,100)
+        if chance <= 25:
+            retaliation = "You are "+Lists.adjectiveGen(1)+"and "+Lists.adjectiveGen(1)
+        elif 25 < chance <= 50:
+            retaliation = "You are "+Lists.adjectiveGen(1)
+        elif 50 < chance <= 75:
+            retaliation = "You are mega "+Lists.adjectiveGen(1)
+        else:
+            retaliation = "Your "+Lists.nounGen(3)+" are "+Lists.adjectiveGen(1)     
+    elif 45 <= chance <= 75:
+        chance = random.randint(0,100)
+        if chance <= 25:
+            retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.adjectiveGen(1)+"fucking "+Lists.nounGen(3)
+        elif 25 < chance <= 50:
+            retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.adjectiveGen(1)+Lists.nounGen(3)
+        elif 50 < chance <= 75:
+            retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.adjectiveGen(1)+"ass "+Lists.nounGen(3)
+        else:
+            retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.nounGen(3)
+    elif chance > 75:
         retaliation = Lists.phraseGen(2)
     return retaliation
