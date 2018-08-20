@@ -66,24 +66,17 @@ class ServerInstance:
         else:
             if not arg.isdigit():
                 await send(self.bot, channel, Lists.errorMsgGen(4))
-
             arg = int(arg)
             if arg < 2:
                 await send(self.bot, channel, Lists.errorMsgGen(4))
             else:
-                to_delete = [msg async for msg in self.bot.logs_from(channel, limit=arg)]
 
-                amount = len(to_delete)
-                print(amount)
-                i = 0
-                while amount > 1:
-                    lower = i
-                    upper = amount % 100
-                    upper = amount + 100 if amount // 100 == amount / 100 else amount
-                    await self.bot.delete_messages(to_delete[lower:upper])
-                    amount -= 100
-                    amount = amount if not 100 < amount < 200 else amount // 2
-                    i += 100
+                to_delete = [msg async for msg in self.bot.logs_from(channel, limit=arg)]
+                step = 75
+                while len(to_delete) >= 100:
+                    await self.bot.delete_messages(to_delete[:step])
+                    to_delete = to_delete[step:]
+                self.bot.delete_messages(to_delete)
 
     async def command_kick(self, ctx, user: discord.Member):
         message = ctx.message
