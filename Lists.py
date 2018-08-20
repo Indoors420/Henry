@@ -383,6 +383,7 @@ def nounGen(a): #Returns a noun/object for use in random phrase generation
         "skin",
         "borger",
         "face",
+        "financial opportunities"
     ]
     if (len(RecentGen.nouns1) >= len(nouns1) * 0.85):
         del RecentGen.nouns1[0]
@@ -416,29 +417,86 @@ def nounGen(a): #Returns a noun/object for use in random phrase generation
         RecentGen.nouns3.append(i)
         noun = retalNouns[i]
     return(noun)
-def adjectiveGen():
-    adjectives = [
-        "gay",
-        "rarted",
-        "stickey",
-        "small",
-        "deformed",
-        "fat",
-        "juicy",
-        "insignificant",
-        "dumb",
-        "stupid",
+def adjectiveGen(a):
+    negative = [
+        "gay ",
+        "rarted ",
+        "stickey ",
+        "small ",
+        "deformed ",
+        "fat ",
+        "juicy ",
+        "insignificant ",
+        "dumb ",
+        "stupid ",
+        "goofy ",
+        "bad ",
+        "awful ",
+        "terrible ",
+        "outrageous ",
+        "vast ",
+        "immense ",
+        "long ",
+        "curved ",
+        "bitter ",
+        "lil ",
+        "whack ",
+        "insane",
     ]
-    if (len(RecentGen.adjectives) >= len(adjectives) * 0.8):
-        del RecentGen.adjectives[0]
-    i = random.randint(0, len(adjectives)-1)
-    while (i in RecentGen.adjectives):
-        if (i < len(adjectives)-1):
-            i += 1
-        else:
-            i = 0
-    RecentGen.adjectives.append(i)
-    adj = adjectives[i]
+    positive = [
+        "cool",
+        "sick",
+        "rad",
+        "zesty ",
+        "sweet ",
+        "tasty ",
+        "holy ",
+        "new ",
+        "gentle ",
+        "good ",
+        "massive ",
+    ]
+    neutral = [
+        "big ",
+        "slippery ",
+        "squishy ",
+        "moist ",
+        "empty ",
+    ]
+    if len(RecentGen.adjectives1) >= len(negative) * 0.8:
+        del RecentGen.adjectives1[0]
+    elif len(RecentGen.adjectives2) >= len(positive) * 0.8:
+        del RecentGen.adjectives2[0]
+    elif len(RecentGen.adjectives3) >= len(neutral) * 0.8:
+        del RecentGen.adjectives3[0]
+    if a == 1:
+        i = random.randint(0, len(negative)-1)
+        while (i in RecentGen.adjectives1):
+            if (i < len(negative)-1):
+                i += 1
+            else:
+                i = 0
+        adj = negative[i]
+        RecentGen.adjectives1.append(i)
+    elif a == 2:
+        i = random.randint(0, len(positive)-1)
+        while (i in RecentGen.adjectives2):
+            if (i < len(positive)-1):
+                i += 1
+            else:
+                i = 0
+        adj = positive[i]
+        RecentGen.adjectives2.append(i)
+    elif a == 3:
+        i = random.randint(0, len(neutral)-1)
+        while (i in RecentGen.adjectives3):
+            if (i < len(neutral)-1):
+                i += 1
+            else:
+                i = 0
+        adj = neutral[i]
+        RecentGen.adjectives3.append(i)
+
     return(adj)
 def phraseGen(a): #Returns a random phrase that Henry's creators made him able to say
     phrases = [
