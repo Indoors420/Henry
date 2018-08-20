@@ -84,6 +84,12 @@ def errorMsgGen(a):
         botOutrank = botOutrank[random.randint(0,len(botOutrank)-1)]
     elif (a == 7):
         errorMsg = authorOutrank[random.randint(0,len(authorOutrank)-1)]
+    else:
+        print("")
+        print("")
+        print("What the fuck?")
+        print("")
+        print("")
     return(errorMsg)
 def introGen(a, b): #Returns a sentence starter for use in random phrase generation
     statementIntros = [
