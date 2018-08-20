@@ -425,7 +425,6 @@ def adjectiveGen(a):
         "small ",
         "deformed ",
         "fat ",
-        "juicy ",
         "insignificant ",
         "dumb ",
         "stupid ",
@@ -444,9 +443,9 @@ def adjectiveGen(a):
         "insane",
     ]
     positive = [
-        "cool",
-        "sick",
-        "rad",
+        "cool ",
+        "sick ",
+        "rad ",
         "zesty ",
         "sweet ",
         "tasty ",
@@ -462,6 +461,7 @@ def adjectiveGen(a):
         "squishy ",
         "moist ",
         "empty ",
+        "juicy ",
     ]
     if len(RecentGen.adjectives1) >= len(negative) * 0.8:
         del RecentGen.adjectives1[0]
