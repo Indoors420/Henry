@@ -66,7 +66,7 @@ def shitpost():  # Uses returned intros, verbs, and nouns to create a coherent s
 def retaliate():
     chance = random.randint(0,100)
     if chance < 45:
-        retaliation = "You are "+Lists.adjectiveGen()
+        retaliation = "You are "+Lists.adjectiveGen(1)
     elif 45 <= chance <= 85:
         retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.nounGen(3)
     elif chance > 85:
