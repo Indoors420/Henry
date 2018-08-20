@@ -76,7 +76,10 @@ class ServerInstance:
                 while len(to_delete) >= 100:
                     await self.bot.delete_messages(to_delete[:step])
                     to_delete = to_delete[step:]
-                await self.bot.delete_messages(to_delete)
+                if len(to_delete) == 1:
+                    await self.bot.delete_message(to_delete[0])
+                else:
+                    await self.bot.delete_messages(to_delete)
 
     async def command_kick(self, ctx, user: discord.Member):
         message = ctx.message
