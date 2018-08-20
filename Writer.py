@@ -72,7 +72,7 @@ def retaliate():
         elif 25 < chance <= 50:
             retaliation = "You are "+Lists.adjectiveGen(1)
         elif 50 < chance <= 75:
-            retaliation = "You are mega "+Lists.adjectiveGen(1)
+            retaliation = "You are "+Lists.adverbGen()+Lists.adjectiveGen(1)
         else:
             retaliation = "Your "+Lists.nounGen(3)+" are "+Lists.adjectiveGen(1)     
     elif 45 <= chance <= 75:

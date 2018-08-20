@@ -310,6 +310,27 @@ def verbGen(a): #Returns a verb for use in random phrase generation
         RecentGen.verbs3.append(i)
         verb = verbs3[i]
     return(verb)
+def adverbGen():
+    adverbs = [
+        "mega ",
+        "very ",
+        "quite ",
+        "extremely ",
+        "astonishingly ",
+        "surprisingly ",
+        "really ",
+        "pretty ",
+    ]
+    if len(RecentGen.adverbs) >= len(adverbs) * 0.8:
+        del adverbs[0]
+    i = random.randint(0,len(adverbs))
+    while i in RecentGen.adverbs:
+        if (i < len(adverbs)-1):
+            i += 1
+        else:
+            i = 0
+    adverb = adverbs[i]
+    return(adverb)
 def nounGen(a): #Returns a noun/object for use in random phrase generation
     nouns1 = [
         "this sandwich",
