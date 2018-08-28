@@ -329,7 +329,7 @@ def adverbGen():
     ]
     if len(RecentGen.adverbs) >= len(adverbs) * 0.8:
         del adverbs[0]
-    i = random.randint(0,len(adverbs))
+    i = random.randint(0,len(adverbs)-1)
     while i in RecentGen.adverbs:
         if (i < len(adverbs)-1):
             i += 1
