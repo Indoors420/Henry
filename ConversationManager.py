@@ -17,7 +17,8 @@ class ConversationManager:
     def remove_stale_conversations(self) -> None:
         for user_id, conversationTime in self.conversationTimes.items():
             if time.time() - conversationTime> self.timeout:
-                self.conversations.remove(user_id)
+                if user_id in self.conversations:
+                    self.conversations.remove(user_id)
                 self.conversationTimes[user_id] = None
         self.conversationTimes = {k: v for k, v in self.conversationTimes.items() if v is not None}
 
