@@ -413,7 +413,7 @@ def nounGen(a): #Returns a noun/object for use in random phrase generation
         "family",
         "dog",
         "skin",
-        "borger",
+        "borgers",
         "face",
         "financial opportunities"
     ]
