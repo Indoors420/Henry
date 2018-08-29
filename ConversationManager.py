@@ -9,9 +9,9 @@ import time, discord
 class ConversationManager:
     conversations = []
     conversationTimes = {}
-    timeout = 10.0
+    timeout = 9.0
 
-    def __init__(self, timeout=10.0):
+    def __init__(self, timeout=9.0):
         self.timeout = timeout
 
     def remove_stale_conversations(self) -> None:
