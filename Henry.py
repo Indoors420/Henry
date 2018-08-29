@@ -35,8 +35,11 @@ async def on_command_error(error: Exception, ctx: commands.Context):
 
 @bot.event
 async def on_message(message: discord.Message):
+    print("1 - Message: "+message)
     if is_henry_server(message.server):
+        print("2 - Message: "+message)
         await get_henry(message.server).on_message(message)
+    
 
 
 @bot.command(pass_context=True)
