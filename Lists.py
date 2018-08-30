@@ -149,10 +149,15 @@ def introGen(a, b): #Returns a sentence starter for use in random phrase generat
     ]
     if (len(RecentGen.intros1) >= len(statementIntros) * 0.85):
         del RecentGen.intros1[0]
-    elif (len(RecentGen.intros2) >= len(questionIntros) * 0.85):
+    if (len(RecentGen.intros2) >= len(questionIntros) * 0.85):
         del RecentGen.intros2[0]
-    elif (len(RecentGen.intros4) >= len(retalIntros) * 0.85):
+    if (len(RecentGen.intros4) >= len(retalIntros) * 0.85):
         del RecentGen.intros4[0]
+    if (len(RecentGen.answerIntros1) >= len(answerIntros1) * 0.85 or len(RecentGen.answerIntros1) == len(answerIntros1)):
+        del RecentGen.answerIntros1[0]
+    if (len(RecentGen.answerIntros2) >= len(answerIntros2) * 0.85 or len(RecentGen.answerIntros2) == len(answerIntros2)):
+        del RecentGen.answerIntros2[0]
+
     if (a == 1):
         i = random.randint(0, len(statementIntros)-1)
         while (i in RecentGen.intros1):
@@ -174,7 +179,7 @@ def introGen(a, b): #Returns a sentence starter for use in random phrase generat
     elif (a == 3):
         if (b == 1):
             i = random.randint(0, len(answerIntros1)-1)
-            while (i in RecentGen.intros3):
+            while (i in RecentGen.answerIntros1):
                 if (i < len(answerIntros1)-1):
                     i += 1
                 else:
@@ -182,13 +187,13 @@ def introGen(a, b): #Returns a sentence starter for use in random phrase generat
             intro = answerIntros1[i]
         elif (b == 2):
             i = random.randint(0, len(answerIntros2)-1)
-            while (i in RecentGen.intros3):
+            while (i in RecentGen.answerIntros2):
                 if (i < len(answerIntros2)-1):
                     i += 1
                 else:
                     i = 0
             intro = answerIntros2[i]
-        RecentGen.intros3.append(i)  
+        RecentGen.answerIntros2.append(i)  
     elif (a == 4):
         i = random.randint(0, len(retalIntros)-1)
         while (i in RecentGen.intros4):
