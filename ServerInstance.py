@@ -43,7 +43,7 @@ class ServerInstance:
                     msg = Writer.respond(content)+" {}".format(author.mention)
                 else:
                     msg = Writer.respond(content)
-                await send(self.bot, channel, msg)
+                    await send(self.bot, channel, msg)
 
             elif "henry" in content or '<@' + self.bot.user.id + '>' in content:
                 self.conversations.add(author)
