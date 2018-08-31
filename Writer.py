@@ -19,11 +19,7 @@ def msg_response(message: typing.AnyStr) -> str:
     elif question_type == 'when':
         msg = Lists.timeGen()
     else:
-        chance = random.randint(0,1)
-        if (chance == 0):
-            msg = Lists.phraseGen(1)
-        else:
-            msg = retaliate()
+        msg = retaliate()
     
     return msg
 
@@ -65,7 +61,6 @@ def shitpost():  # Uses returned intros, verbs, and nouns to create a coherent s
 
 def retaliate():
     chance = random.randint(0,100)
-    print("Chance: "+str(chance))
     if chance <= 40:
         chance = random.randint(0,100)
         if chance <= 25:
@@ -84,6 +79,6 @@ def retaliate():
             retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.adjectiveGen(1)+Lists.nounGen(3)
         else:
             retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.nounGen(3)
-    elif chance > 90:
+    elif chance > 85:
         retaliation = Lists.phraseGen(2)
     return retaliation
