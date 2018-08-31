@@ -13,7 +13,7 @@ def msg_response(message: typing.AnyStr) -> str:
     if question_type == "why":
         msg = Lists.introGen(3, 1)+Lists.nounGen(1)+" "+Lists.verbGen(1)+" "+Lists.nounGen(1)
     elif question_type == 'how':
-        msg = Lists.introGen(3, 2)+Lists.nounGen(1)+" "+Lists.verbGen(1)+"s "+Lists.nounGen(1)
+        msg = "With "+Lists.nounGen(1)
     elif question_type == 'who' or question_type == 'what':
         msg = Lists.nounGen(1)
     elif question_type == 'when':
