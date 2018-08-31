@@ -365,7 +365,7 @@ def nounGen(a): #Returns a noun/object for use in random phrase generation
         f"the {adj}IRS",
         f"these {adj}legos™",
         f"the {adj}neighbor boy",
-        f"my {adj}neighbor's boat",
+        f"my neighbor's {adj}boat",
         f"some {adj}foreigners",
         f"the {adj}cats that live under my grandmas house",
         f"the {adj}milkman",
