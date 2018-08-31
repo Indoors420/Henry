@@ -65,7 +65,7 @@ def shitpost():  # Uses returned intros, verbs, and nouns to create a coherent s
 
 def retaliate():
     chance = random.randint(0,100)
-    print("Chance: "+chance)
+    print("Chance: "+str(chance))
     if chance <= 40:
         chance = random.randint(0,100)
         if chance <= 25:
