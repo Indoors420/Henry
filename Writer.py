@@ -78,12 +78,10 @@ def retaliate():
             retaliation = "Your "+Lists.nounGen(3)+" are "+Lists.adjectiveGen(1)     
     elif 41 < chance <= 90:
         chance = random.randint(0,100)
-        if chance <= 25:
+        if chance <= 33:
             retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.adjectiveGen(1)+"fucking "+Lists.nounGen(3)
-        elif 25 < chance <= 50:
+        elif 33 < chance <= 66:
             retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.adjectiveGen(1)+Lists.nounGen(3)
-        elif 50 < chance <= 75:
-            retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.adjectiveGen(1)+"ass "+Lists.nounGen(3)
         else:
             retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.nounGen(3)
     elif chance > 90:
