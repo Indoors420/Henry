@@ -147,11 +147,15 @@ def introGen(a, b): #Returns a sentence starter for use in random phrase generat
         "Don't make me ",
         "I have the urge to ",
     ]
-    if (len(RecentGen.intros1) >= len(statementIntros) * 0.85):
+    if len(RecentGen.intros1) >= len(statementIntros) * 0.85:
         del RecentGen.intros1[0]
-    if (len(RecentGen.intros2) >= len(questionIntros) * 0.85):
+    if len(RecentGen.intros2) >= len(questionIntros) * 0.85:
         del RecentGen.intros2[0]
-    if (len(RecentGen.intros4) >= len(retalIntros) * 0.85):
+    if len(RecentGen.answerIntros1) >= len(answerIntros1) * 0.85:
+        del RecentGen.answerIntros1[0]
+    if len(RecentGen.answerIntros2) >= len(answerIntros2) * 0.85:
+        del RecentGen.answerIntros2[0]
+    if len(RecentGen.intros4) >= len(retalIntros) * 0.85:
         del RecentGen.intros4[0]
     if (len(RecentGen.answerIntros1) >= len(answerIntros1) * 0.85 or len(RecentGen.answerIntros1) == len(answerIntros1)):
         del RecentGen.answerIntros1[0]
@@ -185,6 +189,7 @@ def introGen(a, b): #Returns a sentence starter for use in random phrase generat
                 else:
                     i = 0
             intro = answerIntros1[i]
+            RecentGen.answerIntros1.append(i)
         elif (b == 2):
             i = random.randint(0, len(answerIntros2)-1)
             while (i in RecentGen.answerIntros2):
@@ -193,7 +198,7 @@ def introGen(a, b): #Returns a sentence starter for use in random phrase generat
                 else:
                     i = 0
             intro = answerIntros2[i]
-        RecentGen.answerIntros2.append(i)  
+            RecentGen.answerIntros2.append(i)
     elif (a == 4):
         i = random.randint(0, len(retalIntros)-1)
         while (i in RecentGen.intros4):
@@ -289,9 +294,9 @@ def verbGen(a): #Returns a verb for use in random phrase generation
     ]
     if (len(RecentGen.verbs1) >= len(verbs1) * 0.85):
         del RecentGen.verbs1[0]
-    elif (len(RecentGen.verbs2) >= len(verbs2) * 0.85):
+    if (len(RecentGen.verbs2) >= len(verbs2) * 0.85):
         del RecentGen.verbs2[0]
-    elif (len(RecentGen.verbs3) >= len(verbs3) * 0.85):
+    if (len(RecentGen.verbs3) >= len(verbs3) * 0.85):
         del RecentGen.verbs3[0]
     if (a == 1):
         i = random.randint(0,len(verbs1)-1)
@@ -365,7 +370,7 @@ def nounGen(a): #Returns a noun/object for use in random phrase generation
         f"the {adj}IRS",
         f"these {adj}legos™",
         f"the {adj}neighbor boy",
-        f"my {adj}neighbor's boat",
+        f"my neighbor's {adj}boat",
         f"some {adj}foreigners",
         f"the {adj}cats that live under my grandmas house",
         f"the {adj}milkman",
@@ -424,7 +429,7 @@ def nounGen(a): #Returns a noun/object for use in random phrase generation
     ]
     if (len(RecentGen.nouns1) >= len(nouns1) * 0.85):
         del RecentGen.nouns1[0]
-    elif (len(RecentGen.nouns2) >= len(nouns2) * 0.85):
+    if (len(RecentGen.nouns2) >= len(nouns2) * 0.85):
         del RecentGen.nouns2[0]
     if (a == 1):
         i = random.randint(0,len(nouns1)-1)
@@ -506,9 +511,9 @@ def adjectiveGen(a):
     ]
     if len(RecentGen.adjectives1) >= len(negative) * 0.8:
         del RecentGen.adjectives1[0]
-    elif len(RecentGen.adjectives2) >= len(positive) * 0.8:
+    if len(RecentGen.adjectives2) >= len(positive) * 0.8:
         del RecentGen.adjectives2[0]
-    elif len(RecentGen.adjectives3) >= len(neutral) * 0.8:
+    if len(RecentGen.adjectives3) >= len(neutral) * 0.8:
         del RecentGen.adjectives3[0]
     if a == 1:
         i = random.randint(0, len(negative)-1)

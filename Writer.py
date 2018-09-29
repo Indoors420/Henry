@@ -13,17 +13,13 @@ def msg_response(message: typing.AnyStr) -> str:
     if question_type == "why":
         msg = Lists.introGen(3, 1)+Lists.nounGen(1)+" "+Lists.verbGen(1)+" "+Lists.nounGen(1)
     elif question_type == 'how':
-        msg = Lists.introGen(3, 2)+Lists.nounGen(1)+" "+Lists.verbGen(1)+"s "+Lists.nounGen(1)
+        msg = "With "+Lists.nounGen(1)
     elif question_type == 'who' or question_type == 'what':
         msg = Lists.nounGen(1)
     elif question_type == 'when':
         msg = Lists.timeGen()
     else:
-        chance = random.randint(0,1)
-        if (chance == 0):
-            msg = Lists.phraseGen(1)
-        else:
-            msg = retaliate()
+        msg = retaliate()
     
     return msg
 
@@ -65,7 +61,7 @@ def shitpost():  # Uses returned intros, verbs, and nouns to create a coherent s
 
 def retaliate():
     chance = random.randint(0,100)
-    if chance < 45:
+    if chance <= 40:
         chance = random.randint(0,100)
         if chance <= 25:
             retaliation = "You are "+Lists.adjectiveGen(1)+"and "+Lists.adjectiveGen(1)
@@ -75,16 +71,14 @@ def retaliate():
             retaliation = "You are "+Lists.adverbGen()+Lists.adjectiveGen(1)
         else:
             retaliation = "Your "+Lists.nounGen(3)+" are "+Lists.adjectiveGen(1)     
-    elif 45 <= chance <= 75:
+    elif 41 < chance <= 90:
         chance = random.randint(0,100)
-        if chance <= 25:
+        if chance <= 33:
             retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.adjectiveGen(1)+"fucking "+Lists.nounGen(3)
-        elif 25 < chance <= 50:
+        elif 33 < chance <= 66:
             retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.adjectiveGen(1)+Lists.nounGen(3)
-        elif 50 < chance <= 75:
-            retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.adjectiveGen(1)+"ass "+Lists.nounGen(3)
         else:
             retaliation = Lists.introGen(4, None)+Lists.verbGen(1)+" your "+Lists.nounGen(3)
-    elif chance > 75:
+    elif chance > 85:
         retaliation = Lists.phraseGen(2)
     return retaliation
