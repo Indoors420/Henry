@@ -157,6 +157,11 @@ def introGen(a, b): #Returns a sentence starter for use in random phrase generat
         del RecentGen.answerIntros2[0]
     if len(RecentGen.intros4) >= len(retalIntros) * 0.85:
         del RecentGen.intros4[0]
+    if (len(RecentGen.answerIntros1) >= len(answerIntros1) * 0.85 or len(RecentGen.answerIntros1) == len(answerIntros1)):
+        del RecentGen.answerIntros1[0]
+    if (len(RecentGen.answerIntros2) >= len(answerIntros2) * 0.85 or len(RecentGen.answerIntros2) == len(answerIntros2)):
+        del RecentGen.answerIntros2[0]
+
     if (a == 1):
         i = random.randint(0, len(statementIntros)-1)
         while (i in RecentGen.intros1):
